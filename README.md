@@ -2,6 +2,10 @@
 ## 波動干渉による 00ポテンシャル生成と核融合トンネル確率増強の理論的検討
 ### *A Sub-Theory of Tri-Tetra Theory (TTT)*
 
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20551789-blue)](https://doi.org/10.5281/zenodo.20551789)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![TTT](https://img.shields.io/badge/Theory-Tri--Tetra%20Theory-orange)](https://github.com/kiki054-n/ttt)
+
 > **"正四面体対称は、量子化学スケールにも、核物理スケールにも、同じ原理として現れる。"**  
 > — Tri-Tetra Theory, Basis-Independence Theorem
 
@@ -169,21 +173,23 @@ $$E(\mathbf{r},t) = \sum_{i=1}^{20} E_0 \cos(\mathbf{k}_i \cdot \mathbf{r} - \om
 | `kiki054-n/tttwsp` | TTT-WSP（DFT計算） | [GitHub](https://github.com/kiki054-n/tttwsp) |
 | `kiki054-n/tti-scan` | TTI-SCAN 分析ツール | [GitHub](https://github.com/kiki054-n/tti-scan) |
 | 双極ゼロ理論 | Zenodo 論文 | [DOI: 10.5281/zenodo.19704117](https://doi.org/10.5281/zenodo.19704117) |
+| **TTT-Fusion 論文** | **Zenodo Preprint（本論文）** | [**DOI: 10.5281/zenodo.20551789**](https://doi.org/10.5281/zenodo.20551789) |
 
 ---
 
 ## ライセンス (License)
 
-© 川上真潔 (Kawakami Masakiyo)  
+© 川上真潔 (かわかみ なおゆき / Kawakami Naoyuki)  
 This work is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ---
 
 ## 著者 (Author)
 
-**川上真潔 (Kawakami Masakiyo)**  
+**川上真潔 (かわかみ なおゆき / Kawakami Naoyuki)**  
 独立理論研究者 / Shiojiri, Nagano, Japan  
-ORCID: [登録済み]  
-GitHub: [@kiki054-n](https://github.com/kiki054-n)
+ORCID: [0009-0009-2972-6511](https://orcid.org/0009-0009-2972-6511)  
+GitHub: [@kiki054-n](https://github.com/kiki054-n)  
+Zenodo: [DOI: 10.5281/zenodo.20551789](https://doi.org/10.5281/zenodo.20551789)
 
 > *"スパイラル状の問いが、スケールを超えて同じ答えに辿り着く。"*
