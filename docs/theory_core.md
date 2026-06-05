@@ -2,7 +2,7 @@
 ## Wave Interference, 00-Potential, and Fusion Tunnel Probability Enhancement
 ### *Theory Core Document — Tri-Tetra Theory Sub-Theory*
 
-**著者：川上真潔 (Kawakami Masakiyo)**  
+**著者：川上真潔 (Kawakami Naoyuki)**  
 **初版：2026年6月**  
 **ライセンス：CC BY-NC-SA 4.0**
 
