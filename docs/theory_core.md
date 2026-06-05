@@ -242,4 +242,4 @@ $l = 6$ の球面調和関数が正20面体対称を支配する。
 
 ---
 
-*© 川上真潔 (Kawakami Masakiyo) — CC BY-NC-SA 4.0*
+*© 川上真潔 (Kawakami Naoyuki) — CC BY-NC-SA 4.0*
