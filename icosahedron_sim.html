@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>★ TTT-Fusion ★ Icosahedron 13-Point Simulation</title>
-    <!-- Tailwind CSS for high-fidelity dark UI -->
+    <title>★ TTT-Fusion ★ 12-Node Multi-Band Simulation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Three.js for 3D physics rendering -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- OrbitControls for interactive 3D camera angles -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap');
@@ -42,15 +39,14 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
 
-    <!-- HEADER / CONTROL HUD BAR -->
     <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur px-6 py-4 flex flex-wrap items-center justify-between gap-4 z-10 sticky top-0">
         <div class="flex items-center gap-3">
-            <a href="index.html" class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-magenta-500 p-[2px] shadow-lg hover:scale-105 transition-transform">
-                <div class="w-full h-full bg-slate-950 rounded-[6px] flex items-center justify-center font-bold text-sm text-magenta-400 hud-font">◀ Portal</div>
-            </a>
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-magenta-500 p-[2px] shadow-lg">
+                <div class="w-full h-full bg-slate-950 rounded-[6px] flex items-center justify-center font-bold text-lg text-cyan-400 hud-font">★</div>
+            </div>
             <div>
-                <h1 class="text-xl font-bold tracking-wider hud-font text-magenta-400">TTT-FUSION ICOSAHEDRON</h1>
-                <p class="text-xs text-slate-400">12方向正20面体照射場による黄金比カスケード（13点系システムモデル）</p>
+                <h1 class="text-xl font-bold tracking-wider hud-font bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">TTT-FUSION</h1>
+                <p class="text-xs text-slate-400">波動干渉による 00 ポテンシャル生成と核融合トンネル確率増強のシミュレータ</p>
             </div>
         </div>
         <div class="flex flex-wrap items-center gap-3 text-xs">
@@ -60,18 +56,15 @@
             </a>
             <div class="bg-slate-900 border border-slate-800 px-3 py-1 rounded flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" id="system-pulse-dot"></span>
-                <span class="text-slate-300 hud-font" id="system-status-text">SYSTEM: I-CASC LOCK</span>
+                <span class="text-slate-300 hud-font" id="system-status-text">SYSTEM: STABLE FUSION</span>
             </div>
         </div>
     </header>
 
-    <!-- MAIN INTERACTIVE SECTION -->
     <main class="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 max-w-[1600px] w-full mx-auto">
         
-        <!-- LEFT PANEL: CONTROLS & ARGUMENTS (Lg: col-span-4) -->
         <section class="lg:col-span-4 flex flex-col gap-6 overflow-y-auto max-h-[calc(100vh-140px)] pr-2">
             
-            <!-- BAND SELECTOR CARD -->
             <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-cyan-900/40 rounded-xl p-5 shadow-lg">
                 <h3 class="text-sm font-semibold tracking-wide text-cyan-400 mb-3 uppercase hud-font flex items-center gap-2">
                     <svg class="w-4 h-4 text-cyan-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="animation-duration: 6s;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573-2.37-2.37 0 002.572-1.065z"></path></svg>
@@ -97,7 +90,6 @@
                 </div>
             </div>
 
-            <!-- PRESETS CARD -->
             <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur">
                 <h3 class="text-sm font-semibold tracking-wide text-slate-300 mb-3 uppercase hud-font flex items-center gap-2">
                     <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
@@ -117,13 +109,12 @@
                         Phase Jitter
                     </button>
                     <button onclick="applyPreset('collapse')" class="px-3 py-2 text-xs rounded bg-purple-950/40 hover:bg-purple-900/50 border border-purple-800/60 text-purple-300 transition-all font-medium text-left">
-                        <span class="block font-bold hud-font text-purple-400 text-sm">収縮駆動 (13→1)</span>
-                        Phase Collapse
+                        <span class="block font-bold hud-font text-purple-400 text-sm">5→1 収縮相転移</span>
+                        5-to-1 Collapse
                     </button>
                 </div>
             </div>
 
-            <!-- HARDWARE TUNING CONTROLS -->
             <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur flex flex-col gap-5">
                 <h3 class="text-sm font-semibold tracking-wide text-slate-300 uppercase hud-font flex items-center justify-between">
                     <span class="flex items-center gap-2">
@@ -133,27 +124,24 @@
                     <span id="tuning-badge" class="text-[10px] bg-cyan-950 border border-cyan-800 text-cyan-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider animate-pulse">LOCK</span>
                 </h3>
 
-                <!-- Antennas Distance R -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
-                        <span class="text-slate-400 font-medium">基本波長 & 距離 R <span class="text-[10px] text-slate-500">(第7公理/幾何共鳴)</span></span>
+                        <span class="text-slate-400 font-medium">基本波長 & 距離 R <span class="text-[10px] text-slate-500">(第7公理/黄金比)</span></span>
                         <span class="hud-font text-cyan-400 font-bold" id="val-distance">R = 53.9 mm</span>
                     </div>
                     <input type="range" id="param-distance" min="10" max="100" step="0.1" value="53.9" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-cyan-500">
-                    <span class="text-[10px] text-slate-500 text-right" id="desc-distance">90GHz λ=3.33mm の幾何共鳴構造</span>
+                    <span class="text-[10px] text-slate-500 text-right" id="desc-distance">90GHz λ=3.33mm の黄金比2次共鳴 (R = 10 * φ * λ)</span>
                 </div>
 
-                <!-- Phase Jitter -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
                         <span class="text-slate-400 font-medium">位相ジッタ (制御揺らぎ) <span class="text-[10px] text-slate-500">(Link β 阻害要因)</span></span>
                         <span class="hud-font text-pink-400 font-bold" id="val-jitter">± 0.00°</span>
                     </div>
                     <input type="range" id="param-jitter" min="0" max="30" step="0.1" value="0" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-pink-500">
-                    <span class="text-[10px] text-slate-500 text-right" id="desc-jitter">0°で完全なコヒーレント相殺。重心の定常性を制御。</span>
+                    <span class="text-[10px] text-slate-500 text-right" id="desc-jitter">0°で完全なコヒーレント相殺。大きくなると重心が揺らぐ。</span>
                 </div>
 
-                <!-- Thermal Drift -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
                         <span class="text-slate-400 font-medium">幾何学的アライメント熱変位 <span class="text-[10px] text-slate-500">(Axiom 0 破綻要因)</span></span>
@@ -163,7 +151,6 @@
                     <span class="text-[10px] text-slate-500 text-right" id="desc-drift">サブミクロン精度の崩れにより Σ vi = 0 の対称性が破れる。</span>
                 </div>
 
-                <!-- Switching Frequency -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
                         <span class="text-slate-400 font-medium">スイッチング周波数 <span class="text-[10px] text-slate-500">(Link α 時間の矢)</span></span>
@@ -173,7 +160,6 @@
                     <span class="text-[10px] text-slate-500 text-right" id="desc-switching">内向波(遅延波)と外向波(先進波)を反転させ呼吸を定常化するサイクル。</span>
                 </div>
 
-                <!-- 2w Harmonic ratio -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
                         <span class="text-slate-400 font-medium">2倍高調波 (2ω) 混合比 <span class="text-[10px] text-slate-500">(Link γ 相転移)</span></span>
@@ -184,7 +170,6 @@
                 </div>
             </div>
 
-            <!-- SEVEN STARS THEORY CONTEXT -->
             <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur flex-grow flex flex-col justify-between">
                 <div>
                     <h3 class="text-sm font-semibold tracking-wide text-slate-300 mb-3 uppercase hud-font flex items-center gap-2">
@@ -192,11 +177,12 @@
                         TTT-Fusion 理論コア
                     </h3>
                     <div id="axiom-desc" class="text-xs text-slate-400 leading-relaxed space-y-2">
-                        <p class="font-bold text-magenta-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 bg-magenta-500 rounded-full"></span>
-                            12方向・正20面体トポロジー (13点系)
+                        <p class="font-bold text-cyan-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span>
+                            00構造によるクーロン障壁の変調
                         </p>
-                        <p>空間充填不可能性を持つ「5回対称性」を3次元空間に実装。12方向からの球形同期干渉が、中心に極限まで深い黄金比カスケードポテンシャルを形成。He-4（アルファ粒子）の正四面体核配置や閉殻魔法数核の構造安定性を生み出す高次場を生成します。</p>
+                        <p>位相同期した12方向の波が正20面体場骨格（Icosahedral field skeleton）を形成。中心に 00（双極ゼロ）ポテンシャル井戸を穿ち、WKB近似によるトンネル確率を指数関数的に増強します。</p>
+                        <p class="pt-2 text-slate-500 italic">13点系＝1つの中心コア(OOO) ＋ 正20面体の12頂点。He-4の正四面体魔法数核構造と対応。</p>
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-900 flex justify-between items-center text-[11px] text-slate-500">
@@ -207,14 +193,11 @@
 
         </section>
 
-        <!-- RIGHT PANEL: 3D PORT & PHASE SPACE (Lg: col-span-8) -->
         <section class="lg:col-span-8 flex flex-col gap-6 h-full min-h-[500px]">
             
-            <!-- MAIN 3D PORT CARD -->
             <div class="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4 flex flex-col flex-grow relative overflow-hidden group">
-                <!-- HUD Overlays inside viewport -->
                 <div class="absolute top-6 left-6 z-10 pointer-events-none select-none flex flex-col gap-2">
-                    <span class="hud-font font-black tracking-widest text-xs text-slate-500 uppercase" id="hud-viewport-title">3D ICOSAHEDRAL FIELD VIEWPORT</span>
+                    <span class="hud-font font-black tracking-widest text-xs text-slate-500 uppercase">3D ICOSAHEDRAL FIELD VIEWPORT</span>
                     <div class="flex items-center gap-1.5 bg-slate-950/80 border border-slate-800 px-2.5 py-1 rounded-md">
                         <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" id="viewport-state-dot"></span>
                         <span class="text-[10px] font-bold text-slate-300 uppercase hud-font" id="viewport-state-badge">Coherent Trap</span>
@@ -226,10 +209,8 @@
                     <span class="text-xs text-cyan-400 font-bold hud-font" id="hud-frequency">λ: 3.33mm</span>
                 </div>
 
-                <!-- Three.js Canvas Container -->
                 <div id="three-container" class="w-full flex-grow rounded-lg overflow-hidden bg-slate-950/30 min-h-[350px]"></div>
 
-                <!-- Interactive overlay info bar (bottom of 3D) -->
                 <div class="absolute bottom-6 left-6 right-6 z-10 pointer-events-none flex flex-wrap justify-between gap-4 text-[11px] hud-font text-slate-400 bg-slate-950/90 border border-slate-800/60 p-3 rounded-lg backdrop-blur">
                     <div class="flex items-center gap-1">
                         <span class="text-slate-500">12-Node Phase:</span>
@@ -246,10 +227,8 @@
                 </div>
             </div>
 
-            <!-- BOTTOM HUD CARD: OUROBOROS LOOP & METRICS -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                 
-                <!-- PHASE SPACE GRAPH (Ouroboros Loop) -->
                 <div class="md:col-span-7 bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur flex flex-col">
                     <div class="flex items-center justify-between mb-3 border-b border-slate-900 pb-2">
                         <h4 class="text-xs font-bold uppercase hud-font text-slate-300 flex items-center gap-2">
@@ -259,7 +238,6 @@
                         <span class="text-[10px] hud-font text-slate-500">Y = 1/X Bi-polar Zero</span>
                     </div>
                     <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-                        <!-- Canvas for plotting parametric stability curves -->
                         <canvas id="ouroboros-canvas" width="200" height="200" class="bg-slate-950 rounded border border-slate-900 shadow-inner w-[180px] h-[180px] md:w-[200px] md:h-[200px]"></canvas>
                         
                         <div class="flex-grow flex flex-col gap-3 text-xs w-full">
@@ -288,7 +266,6 @@
                     </div>
                 </div>
 
-                <!-- HARDWARE METADATA INFO -->
                 <div class="md:col-span-5 bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur flex flex-col justify-between">
                     <div>
                         <h4 class="text-xs font-bold uppercase hud-font text-slate-300 mb-3 border-b border-slate-900 pb-2 flex items-center gap-2">
@@ -296,11 +273,10 @@
                             実機実装仕様 (TTT-Fusion)
                         </h4>
                         <ul class="text-xs text-slate-400 space-y-2.5" id="specs-list">
-                            <!-- Populated dynamically via JS based on selected band -->
-                        </ul>
+                            </ul>
                     </div>
                     <div class="mt-4 bg-slate-900/40 border border-slate-800/60 p-2 rounded text-[10px] text-slate-500 italic">
-                        "正20面体対称は、量子化学スケール（WSP）にも核物理スケール（Fusion）にも同じ原理として現れる。"
+                        "正四面体・正20面体対称は、量子化学スケール（WSP）にも核物理スケール（Fusion）にも同じ原理として現れる。"
                     </div>
                 </div>
 
@@ -310,7 +286,6 @@
 
     </main>
 
-    <!-- FOOTER LICENSE & DOI REFERENCE BAR -->
     <footer class="border-t border-slate-900 bg-slate-950/80 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
         <div class="flex flex-wrap items-center gap-2">
             <span>© 2026 <strong>川上真潔 (Naoyuki Kawakami)</strong></span>
@@ -327,7 +302,6 @@
         </div>
     </footer>
 
-    <!-- SCRIPTING LOGIC: MULTI-BAND SYSTEM WITH ICOSAHEDRON GEOMETRY -->
     <script>
         // --- BAND DATABASE AND CONFIGS ---
         const BANDS = {
@@ -338,7 +312,7 @@
                 defaultR: 202.2, 
                 minR: 50,
                 maxR: 400,
-                descDistance: "2.4GHz λ=125mm の正20面体1次共鳴 (R = 1.618 * λ)",
+                descDistance: "2.4GHz λ=125mm の黄金比1次共鳴 (R = 1.618 * λ)",
                 descJitter: "12方向のパッチ分配器のコヒーレント相殺。S帯では安価な同軸制御により高精度の対称閉じ込めが可能。",
                 descDrift: "熱変位許容値: ミリメートル級の緩い公差で12点系の重心安定を維持。",
                 descSwitching: "スイッチング周波数: 10MHz〜50MHz。12素子の高速スイッチングによる呼吸定常化。",
@@ -348,7 +322,7 @@
                 specs: [
                     { label: "波源・アンプ:", val: "12素子固体パワーアンプ (GaN-HEMT)" },
                     { label: "位相制御器:", val: "12chデジタルマトリクス位相シフター" },
-                    { label: "照射素子:", val: "正20面体パッチアンテナアレイ" },
+                    { label: "照射素子:", val: "正20面体配置パッチアレイアンテナ" },
                     { label: "対応実験系:", val: "トカマク内部RFアンテナ配置案" }
                 ]
             },
@@ -359,7 +333,7 @@
                 defaultR: 53.9,
                 minR: 10,
                 maxR: 100,
-                descDistance: "90GHz λ=3.33mm の正20面体2次共鳴 (R = 10 * φ * λ)",
+                descDistance: "90GHz λ=3.33mm の黄金比2次共鳴 (R = 10 * φ * λ)",
                 descJitter: "0°で完全なコヒーレント相殺。12本のベクトルが中央で相殺（Σ vi = 0）。",
                 descDrift: "サブミクロン精度の崩れにより正20面体の完全な5回対称性が破れる。",
                 descSwitching: "内向波(遅延波)と外向波(先進波)を反転させ、中心核を安定保持するサイクル。",
@@ -367,9 +341,9 @@
                 colorClass: "cyan",
                 badgeClass: "bg-cyan-950 border-cyan-800 text-cyan-300",
                 specs: [
-                    { label: "光源方式:", val: "12ch光電融合 (Microwave Photonics)" },
-                    { label: "位相制御器:", val: "LN超高速位相変調マトリクス" },
-                    { label: "照射素子:", val: "UTC-PD超高速光検出アンテナ素子" },
+                    { label: "波源方式:", val: "12ch光電融合 (Microwave Photonics)" },
+                    { label: "位相制御器:", val: "LN超高速位相変調マトリクス (LiNbO₃)" },
+                    { label: "照射素子:", val: "UTC-PD超高速光検出アンテナ結合素子" },
                     { label: "対応実験系:", val: "ICF（レーザー核融合）4/12方向照射" }
                 ]
             },
@@ -380,7 +354,7 @@
                 defaultR: 16.2, 
                 minR: 3,
                 maxR: 40,
-                descDistance: "300GHz λ=1.00mm の正20面体2次共鳴 (R = 10 * φ * λ)",
+                descDistance: "300GHz λ=1.00mm の黄金比2次共鳴 (R = 10 * φ * λ)",
                 descJitter: "サブミリ波領域。わずかな位相揺らぎが12方向の完全対称クランチを激しく阻害。",
                 descDrift: "熱歪みに極めて鋭敏。ナノメートル精度での12頂点位置のアライメントが必要。",
                 descSwitching: "スイッチング率: 数GHz。12の波の同時コヒーレンシーが要。",
@@ -388,7 +362,7 @@
                 colorClass: "pink",
                 badgeClass: "bg-pink-950 border-pink-800 text-pink-300",
                 specs: [
-                    { label: "光源方式:", val: "12アームTHzプラズマ波フォトミキサー" },
+                    { label: "波源方式:", val: "12アームTHzプラズマ波フォトミキサー" },
                     { label: "位相制御器:", val: "マルチチャンネル・グラフェン調相素子" },
                     { label: "照射素子:", val: "超精密金メッキICOSA金属ホーンアンテナ" },
                     { label: "対応実験系:", val: "Zピンチ高強度電磁パルス（4-12軸）" }
@@ -401,7 +375,7 @@
                 defaultR: 25.1, 
                 minR: 5,
                 maxR: 80,
-                descDistance: "193THz λ=1550nm の正20面体2次共鳴 (R = 10 * φ * λ)",
+                descDistance: "193THz λ=1550nm の黄金比2次共鳴 (R = 10 * φ * λ)",
                 descJitter: "フェムト秒コヒーレンス制御が要。量子干渉閉じ込めは、極低温でのみ維持可能。",
                 descDrift: "熱膨張によるピコメートル単位の変化で12方向の結合能が完全崩壊します。",
                 descSwitching: "光双安定性を利用した超高速全光型位相変調セルフフィードバック。",
@@ -409,10 +383,10 @@
                 colorClass: "amber",
                 badgeClass: "bg-amber-950 border-amber-800 text-amber-300",
                 specs: [
-                    { label: "光源方式:", val: "超狭線幅チューナブル・DFB半導体レーザー" },
+                    { label: "波源方式:", val: "超狭線幅チューナブル・DFB半導体レーザー" },
                     { label: "位相制御器:", val: "12出力シリコン光集積位相変調回路" },
                     { label: "照射素子:", val: "シリコンフォトニクス集束型回折格子結合器" },
-                    { label: "対応構造:", val: "SOI (Silicon-on-Insulator) ナノ構造集積体" }
+                    { label: "構造母材:", val: "SOI (Silicon-on-Insulator) ナノ構造集積体" }
                 ]
             }
         };
@@ -420,7 +394,7 @@
         // Current active band
         let currentBand = 'W';
 
-        // Parameters
+        // Custom parameters
         let params = {
             distance: 53.9,
             jitter: 0,
@@ -430,7 +404,7 @@
             mode: 'ideal'
         };
 
-        // UI DOM elements caching
+        // UI DOM elements definition to reference HTML elements
         const ui = {
             distSlider: document.getElementById('param-distance'),
             jitterSlider: document.getElementById('param-jitter'),
@@ -458,36 +432,44 @@
             barCoupling: document.getElementById('bar-coupling')
         };
 
-        // Band Shift handler
+        // Dynamically shift UI components based on band selection
         function changeBand(bandKey) {
             currentBand = bandKey;
             const b = BANDS[bandKey];
 
+            // 1. Update text and titles
             ui.hudFreq.textContent = b.freqLabel;
             document.getElementById('hud-band-title').textContent = b.title;
 
+            // Highlight chosen button
             ['S', 'W', 'THz', 'Optical'].forEach(k => {
                 const btn = document.getElementById(`btn-band-${k}`);
-                if (k === bandKey) {
+                const isActive = (k === bandKey);
+                
+                if (isActive) {
                     btn.className = `px-3 py-2 text-xs rounded border-2 border-${b.colorClass}-500 bg-${b.colorClass}-950/20 text-white transition-all text-left shadow-lg`;
                 } else {
                     btn.className = "px-3 py-2 text-xs rounded border border-slate-800 text-slate-400 bg-slate-950/80 hover:bg-slate-900 transition-all text-left";
                 }
             });
 
+            // 2. Adjust slider properties for Distance R based on selected scale
             ui.distSlider.min = b.minR;
             ui.distSlider.max = b.maxR;
-            params.distance = b.defaultR;
+            params.distance = b.defaultR; 
             ui.distSlider.value = b.defaultR;
 
+            // Dynamic unit description
             const isOptical = (bandKey === 'Optical');
             ui.distVal.textContent = isOptical ? `R = ${b.defaultR.toFixed(1)} μm` : `R = ${b.defaultR.toFixed(1)} mm`;
 
+            // Adjust descriptions dynamically
             document.getElementById('desc-distance').textContent = b.descDistance;
             document.getElementById('desc-jitter').textContent = b.descJitter;
             document.getElementById('desc-drift').textContent = b.descDrift;
             document.getElementById('desc-switching').textContent = b.descSwitching;
 
+            // Update specs list
             const specsList = document.getElementById('specs-list');
             specsList.innerHTML = '';
             b.specs.forEach(spec => {
@@ -497,18 +479,20 @@
                 specsList.appendChild(li);
             });
 
+            // Set styling color indicators
             const colorClass = b.colorClass;
             document.getElementById('system-pulse-dot').className = `w-2 h-2 rounded-full bg-${colorClass}-500 animate-pulse`;
             document.getElementById('ouroboros-dot').className = `w-2 h-2 rounded-full bg-${colorClass}-500`;
             document.getElementById('specs-dot').className = `w-2 h-2 rounded-full bg-${colorClass}-500`;
             
+            // Adjust Three.js Core visual scale & color dynamically based on band
             coreMesh.material.color.setHex(b.colorHex);
 
-            applyPreset('ideal');
+            applyPreset('ideal'); 
             updateUIVals();
         }
 
-        // Preset Settings
+        // Preset settings
         function applyPreset(mode) {
             params.mode = mode;
             const b = BANDS[currentBand];
@@ -527,9 +511,10 @@
                 ui.axiomDesc.innerHTML = `
                     <p class="font-bold text-${b.colorClass}-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 bg-${b.colorClass}-500 rounded-full"></span>
-                        12方向・正20面体トポロジー (13点系)
+                        第0・6公理 : 5回対称性と正20面体
                     </p>
-                    <p>空間充填不可能性を持つ「5回対称性」を3次元空間に実装。12方向からの球形同期干渉が、中心に極限まで深い黄金比カスケードポテンシャルを形成。He-4（アルファ粒子）の正四面体核配置や閉殻魔法数核の構造安定性を生み出す高次場を生成します。</p>
+                    <p>原点(0,0,0)を囲む12本のコヒーレントベクトルの相殺。3次元空間の幾何学的歪み（5回対称による空間充填不可能性）をエネルギー井戸へと昇華します。</p>
+                    <p class="pt-2 text-slate-500 italic">13点系 = 1つの中心(OOO) + 正20面体の12頂点。黄金比が導く極限の相転移構造。</p>
                 `;
             } else if (mode === 'drift') {
                 params.distance = b.defaultR;
@@ -542,7 +527,13 @@
                 ui.badge.className = "text-[10px] bg-amber-950 border border-amber-800 text-amber-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider";
                 ui.vpState.textContent = "Symmetry Broken";
                 ui.vpState.className = "text-[10px] font-bold text-amber-400 uppercase hud-font";
-                ui.axiomDesc.innerHTML = `<p class="font-bold text-amber-500 text-sm border-b border-slate-900 pb-1">5回対称アライメント破綻</p><p>正20面体構造のアライメント変位により、12の方向ベクトルの中心交点にズレが生じ、原点テンソル相殺が不完全（Σ vi ≠ 0）になります。カスケード井戸の熱的エネルギー漏出を表します。</p>`;
+                ui.axiomDesc.innerHTML = `
+                    <p class="font-bold text-amber-500 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span>
+                        5回対称アライメント破綻
+                    </p>
+                    <p>正20面体構造のアライメント変位により、12の方向ベクトルの中心交点にズレが生じ、原点テンソル相殺が不完全（Σ vi ≠ 0）になります。カスケード井戸の熱的エネルギー漏出を表します。</p>
+                `;
             } else if (mode === 'jitter') {
                 params.distance = b.defaultR;
                 params.jitter = 18.5;
@@ -554,7 +545,13 @@
                 ui.badge.className = "text-[10px] bg-pink-950 border border-pink-800 text-pink-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider";
                 ui.vpState.textContent = "Phase Unlocked";
                 ui.vpState.className = "text-[10px] font-bold text-pink-400 uppercase hud-font";
-                ui.axiomDesc.innerHTML = `<p class="font-bold text-pink-500 text-sm border-b border-slate-900 pb-1">Link β (観測・位置確定) の阻害</p><p>12の独立した高周波信号の位相コヒーレンシーが揺らぐため、波束の収縮が起こせなくなります。プラズマは12方向へ再び拡散・霧散します。</p>`;
+                ui.axiomDesc.innerHTML = `
+                    <p class="font-bold text-pink-500 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-pink-500 rounded-full"></span>
+                        Link β (観測・位置確定) の阻害
+                    </p>
+                    <p>12の独立した高周波信号の位相コヒーレンシーが揺らぐため、波束の収縮が起こせなくなります。プラズマは12方向へ再び拡散・霧散します。</p>
+                `;
             } else if (mode === 'collapse') {
                 params.distance = b.defaultR;
                 params.jitter = 0.8;
@@ -564,9 +561,15 @@
 
                 ui.badge.textContent = "COLLAPSE RUN";
                 ui.badge.className = "text-[10px] bg-purple-950 border border-purple-800 text-purple-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider animate-pulse";
-                ui.vpState.textContent = "13→1 Cascade Collapse";
+                ui.vpState.textContent = "13→1 Collapse";
                 ui.vpState.className = "text-[10px] font-bold text-purple-400 uppercase hud-font animate-bounce";
-                ui.axiomDesc.innerHTML = `<p class="font-bold text-purple-400 text-sm border-b border-slate-900 pb-1">Link γ : 黄金比カスケード 13 → 1 収縮</p><p>基本波と2倍高調波が完全に同相共鳴した12の波が、正20面体の歪んだテンションをエネルギーへ変換し、中心コア(1)へ一気に収縮させています。WKB近似トンネル確率が最大化されます。</p>`;
+                ui.axiomDesc.innerHTML = `
+                    <p class="font-bold text-purple-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                        Link γ : 黄金比カスケード 13 → 1 収縮
+                    </p>
+                    <p>基本波と2倍高調波が完全に同相共鳴した12の波が、正20面体の歪んだテンションをエネルギーへ変換し、中心コア(1)へ一気に収縮させています。WKB近似トンネル確率が最大化されます。</p>
+                `;
             }
             updateSlidersFromParams();
             updateUIVals();
@@ -594,13 +597,11 @@
 
             const driftLimit = isOptical ? 25 : 150; 
             const totalError = (params.jitter / 30) * 0.7 + (params.drift / driftLimit) * 0.3;
-            
-            // 12-Node topology averages out phase noise much better than a 4-Node system
-            const entropy = Math.max(0.005, totalError * 1.5 * 0.65).toFixed(3);
-            const coupling = Math.max(0, 100 - (totalError * 140 * 0.65)).toFixed(1);
+            const entropy = Math.max(0.005, totalError * 1.5).toFixed(3);
+            const coupling = Math.max(0, 100 - (totalError * 140)).toFixed(1);
 
-            ui.statEntropy.textContent = `${entropy} ${entropy < 0.1 ? '(Min)' : entropy > 0.55 ? '(Chaos)' : '(Warm)'}`;
-            ui.statCoupling.textContent = `${coupling}% ${coupling > 90 ? '(Max)' : coupling < 25 ? '(Broken)' : '(Weak)'}`;
+            ui.statEntropy.textContent = `${entropy} ${entropy < 0.1 ? '(Min)' : entropy > 0.6 ? '(Chaos)' : '(Warm)'}`;
+            ui.statCoupling.textContent = `${coupling}% ${coupling > 90 ? '(Max)' : coupling < 20 ? '(Broken)' : '(Weak)'}`;
 
             ui.barEntropy.style.width = `${Math.min(100, entropy * 100)}%`;
             ui.barCoupling.style.width = `${coupling}%`;
@@ -628,28 +629,28 @@
             }
 
             const driftNorm = params.drift / driftLimit;
-            const vectorSumVal = Math.sqrt((driftNorm * driftNorm * 1.5 + (params.jitter * 0.005)) / 3.5).toFixed(3);
+            const vectorSumVal = Math.sqrt((driftNorm * driftNorm * 1.5 + (params.jitter * 0.005)) / 3).toFixed(3);
             ui.hudVectorSum.textContent = `Σ vi = ${vectorSumVal}`;
             if (vectorSumVal < 0.08) {
                 ui.hudVectorSum.className = "text-emerald-400 font-bold";
-            } else if (vectorSumVal < 0.28) {
+            } else if (vectorSumVal < 0.25) {
                 ui.hudVectorSum.className = "text-amber-400 font-bold";
             } else {
                 ui.hudVectorSum.className = "text-rose-400 font-bold animate-pulse";
             }
 
             ui.hudDensity.textContent = `${coupling}%`;
-            ui.hudPhases.textContent = params.jitter > 14 ? "PHASE DE-COHERED" : "12-NODE PHASE LOCK";
-            ui.hudPhases.className = params.jitter > 14 ? "text-pink-400 font-bold animate-pulse" : `text-${b.colorClass}-400 font-bold`;
+            ui.hudPhases.textContent = params.jitter > 12 ? "PHASE DE-COHERED" : "12-NODE PHASE LOCK";
+            ui.hudPhases.className = params.jitter > 12 ? "text-pink-400 font-bold animate-pulse" : `text-${b.colorClass}-400 font-bold`;
         }
 
-        // --- THREE.JS GRAPHICS SCENE SETUP ---
+        // --- THREE.JS GRAPHICS SETUP ---
         const container = document.getElementById('three-container');
         const scene = new THREE.Scene();
         scene.fog = new THREE.FogExp2(0x030712, 0.008);
 
         const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(110, 85, 155);
+        camera.position.set(110, 90, 160);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
@@ -660,139 +661,228 @@
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.maxPolarAngle = Math.PI / 2 + 0.1;
-        controls.minDistance = 35;
-        controls.maxDistance = 280;
+        controls.minDistance = 30;
+        controls.maxDistance = 300;
 
-        // Ambient particles
-        const particleCount = 1000;
+        // Space Dust Background
+        const particleCount = 1200;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
+
         for (let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 400;
-            positions[i + 1] = (Math.random() - 0.5) * 400;
-            positions[i + 2] = (Math.random() - 0.5) * 400;
-            colors[i] = 0.1; colors[i + 1] = 0.15 + Math.random() * 0.15; colors[i + 2] = 0.3 + Math.random() * 0.4;
+            positions[i] = (Math.random() - 0.5) * 450;
+            positions[i + 1] = (Math.random() - 0.5) * 450;
+            positions[i + 2] = (Math.random() - 0.5) * 450;
+
+            colors[i] = 0.1;
+            colors[i + 1] = 0.2 + Math.random() * 0.15;
+            colors[i + 2] = 0.3 + Math.random() * 0.45;
         }
         particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        const dustPoints = new THREE.Points(particleGeo, new THREE.PointsMaterial({ size: 1.5, vertexColors: true, transparent: true, opacity: 0.6 }));
+
+        const particleMat = new THREE.PointsMaterial({
+            size: 1.5,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.65
+        });
+        const dustPoints = new THREE.Points(particleGeo, particleMat);
         scene.add(dustPoints);
 
-        // Center Core Mesh (★1: OOO)
+        // Center Core (★1: OOO)
         const coreGeo = new THREE.SphereGeometry(6, 32, 32);
-        const coreMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.8, wireframe: true });
+        const coreMat = new THREE.MeshBasicMaterial({
+            color: 0x06b6d4,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
         const coreMesh = new THREE.Mesh(coreGeo, coreMat);
         scene.add(coreMesh);
 
-        const innerCoreMesh = new THREE.Mesh(new THREE.SphereGeometry(3.4, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95 }));
+        // Inner solid core glow
+        const innerCoreGeo = new THREE.SphereGeometry(3.5, 32, 32);
+        const innerCoreMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.95
+        });
+        const innerCoreMesh = new THREE.Mesh(innerCoreGeo, innerCoreMat);
         scene.add(innerCoreMesh);
 
-        // Space Floor
+        // Grid Floor
         const gridHelper = new THREE.GridHelper(220, 22, 0x1e293b, 0x0f172a);
         gridHelper.position.y = -50;
         scene.add(gridHelper);
 
-        // --- ICOSAHEDRON SPECIFIC GEOMETRY ---
+        // --- ICOSAHEDRON GEOMETRY SPECIFICATION (12 Nodes) ---
+        const phiRatio = (1 + Math.sqrt(5)) / 2; 
+
+        const rawIcosaCoords = [
+            new THREE.Vector3(0, 1, phiRatio),
+            new THREE.Vector3(0, -1, phiRatio),
+            new THREE.Vector3(0, 1, -phiRatio),
+            new THREE.Vector3(0, -1, -phiRatio),
+            
+            new THREE.Vector3(1, phiRatio, 0),
+            new THREE.Vector3(-1, phiRatio, 0),
+            new THREE.Vector3(1, -phiRatio, 0),
+            new THREE.Vector3(-1, -phiRatio, 0),
+            
+            new THREE.Vector3(phiRatio, 0, 1),
+            new THREE.Vector3(-phiRatio, 0, 1),
+            new THREE.Vector3(phiRatio, 0, -1),
+            new THREE.Vector3(-phiRatio, 0, -1)
+        ];
+
         const antennas = [];
         const waveSpheres = [];
-        const linkLines = [];
-        const vectorLines = [];
+
         const palette = [0xec4899, 0xf59e0b, 0x10b981, 0x6366f1, 0x06b6d4, 0x8b5cf6];
 
         for (let i = 0; i < 12; i++) {
             const nodeColor = palette[i % palette.length];
-            const antMesh = new THREE.Mesh(new THREE.ConeGeometry(3, 8, 4), new THREE.MeshBasicMaterial({ color: nodeColor, wireframe: true }));
-            const indicator = new THREE.Mesh(new THREE.SphereGeometry(0.8, 8, 8), new THREE.MeshBasicMaterial({ color: nodeColor }));
+            
+            const antGeo = new THREE.ConeGeometry(3, 8, 4);
+            const antMat = new THREE.MeshBasicMaterial({
+                color: nodeColor,
+                wireframe: true
+            });
+            const antMesh = new THREE.Mesh(antGeo, antMat);
+            
+            const indicatorGeo = new THREE.SphereGeometry(0.8, 8, 8);
+            const indicatorMat = new THREE.MeshBasicMaterial({ color: nodeColor });
+            const indicator = new THREE.Mesh(indicatorGeo, indicatorMat);
             indicator.position.y = 4;
             antMesh.add(indicator);
+
             scene.add(antMesh);
             antennas.push(antMesh);
 
             const waveGroup = new THREE.Group();
             for (let j = 0; j < 3; j++) {
-                const wSphere = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial({ color: nodeColor, transparent: true, opacity: 0.25, wireframe: true }));
+                const sphereGeo = new THREE.SphereGeometry(1, 16, 16);
+                const sphereMat = new THREE.MeshBasicMaterial({
+                    color: nodeColor,
+                    transparent: true,
+                    opacity: 0.25,
+                    wireframe: true
+                });
+                const wSphere = new THREE.Mesh(sphereGeo, sphereMat);
                 wSphere.userData = { scaleFactor: j * 0.33 };
                 waveGroup.add(wSphere);
             }
             scene.add(waveGroup);
             waveSpheres.push(waveGroup);
+        }
 
-            // Vector lines pointing to center
+        // Connections mapping
+        const visualR = 53.9; 
+        const normVertices = rawIcosaCoords.map(v => v.clone().normalize().multiplyScalar(visualR));
+        const lineConnections = [];
+        
+        for (let i = 0; i < 12; i++) {
+            for (let j = i + 1; j < 12; j++) {
+                const d = normVertices[i].distanceTo(normVertices[j]);
+                if (Math.abs(d - 1.0514 * visualR) < 3.0) {
+                    lineConnections.push([i, j]);
+                }
+            }
+        }
+
+        // Draw 30 Link line wireframes
+        const linkLines = [];
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x334155,
+            transparent: true,
+            opacity: 0.5
+        });
+
+        lineConnections.forEach(() => {
+            const geom = new THREE.BufferGeometry();
+            const positions = new Float32Array(6);
+            geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const line = new THREE.Line(geom, lineMaterial);
+            scene.add(line);
+            linkLines.push(line);
+        });
+
+        // 12 Core ray vectors towards origin
+        const vectorLines = [];
+        for (let i = 0; i < 12; i++) {
+            const nodeColor = palette[i % palette.length];
             const vGeom = new THREE.BufferGeometry();
-            vGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-            const vLine = new THREE.Line(vGeom, new THREE.LineBasicMaterial({ color: nodeColor, transparent: true, opacity: 0.3 }));
+            const positions = new Float32Array(6);
+            vGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const vLine = new THREE.Line(vGeom, new THREE.LineBasicMaterial({
+                color: nodeColor,
+                transparent: true,
+                opacity: 0.3
+            }));
             scene.add(vLine);
             vectorLines.push(vLine);
         }
 
-        // Establish the 30 connections of a regular icosahedron
-        const connections = [
-            [0,1],[0,4],[0,5],[0,8],[0,9],[1,6],[1,7],[1,8],[1,9],[2,3],
-            [2,4],[2,5],[2,10],[2,11],[3,6],[3,7],[3,10],[3,11],[4,5],[4,8],
-            [4,10],[5,9],[5,11],[6,7],[6,8],[6,10],[7,9],[7,11],[8,10],[9,11]
-        ];
-
-        // Draw 30 Link line wireframes
-        for (let i = 0; i < 30; i++) {
-            const geom = new THREE.BufferGeometry();
-            geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-            const line = new THREE.Line(geom, new THREE.LineBasicMaterial({ color: 0x334155, transparent: true, opacity: 0.45 }));
-            scene.add(line);
-            linkLines.push(line);
-        }
-
-        // Update spatial layout and deform positions dynamically based on parameters
-        const visualR = 53.9;
-        function updateDynamicTopology() {
+        // Dynamic spatial mapping loop
+        function updateIcosahedralGeometry() {
             const limitDrift = currentBand === 'Optical' ? 25 : 150;
             const normalizedDrift = (params.drift / limitDrift) * 3.5;
 
-            // Generate temporary modified coordinate mapping
-            const activeCoords = rawIcosaCoords.map((rawV, idx) => {
+            const activeVertices = rawIcosaCoords.map((rawV, idx) => {
                 const targetCoord = rawV.clone().normalize().multiplyScalar(visualR);
                 
-                // Drift impacts specific nodes asymmetrically to break symmetry field lines
                 if ((idx === 1 || idx === 5) && params.drift > 0) {
                     targetCoord.x += normalizedDrift * 2.5;
                     targetCoord.y += normalizedDrift * 1.5;
                     targetCoord.z += normalizedDrift * 1.0;
                 }
                 
-                // Fine noise jitter representing phase fluctuations
                 if (params.jitter > 0) {
-                    const elapsedClock = Date.now() * 0.01;
-                    targetCoord.x += Math.sin(elapsedClock + idx) * (params.jitter / 15);
-                    targetCoord.y += Math.cos(elapsedClock - idx) * (params.jitter / 15);
-                    targetCoord.z += Math.sin(elapsedClock * 0.5 - idx) * (params.jitter / 20);
+                    const t = Date.now() * 0.01;
+                    targetCoord.x += Math.sin(t + idx) * (params.jitter / 15);
+                    targetCoord.y += Math.cos(t - idx) * (params.jitter / 15);
+                    targetCoord.z += Math.sin(t * 0.5 - idx) * (params.jitter / 20);
                 }
                 return targetCoord;
             });
 
-            // Adjust actual Three.js node instances
-            for (let i = 0; i < 12; i++) {
-                antennas[i].position.copy(activeCoords[i]);
-                antennas[i].lookAt(new THREE.Vector3(0, 0, 0));
-                antennas[i].rotateX(Math.PI / 2);
-                waveSpheres[i].position.copy(activeCoords[i]);
+            antennas.forEach((ant, idx) => {
+                ant.position.copy(activeVertices[idx]);
+                ant.lookAt(new THREE.Vector3(0, 0, 0));
+                ant.rotateX(Math.PI / 2);
 
-                // Update core vector rays data array
-                const positions = vectorLines[i].geometry.attributes.position.array;
-                positions[0] = activeCoords[i].x; positions[1] = activeCoords[i].y; positions[2] = activeCoords[i].z;
-                positions[3] = 0; positions[4] = 0; positions[5] = 0;
-                vectorLines[i].geometry.attributes.position.needsUpdate = true;
-            }
+                waveSpheres[idx].position.copy(activeVertices[idx]);
+            });
 
-            // Adjust active wireframe boundary link lines (30 edges)
-            for (let i = 0; i < 30; i++) {
-                const conn = connections[i];
+            let connIndex = 0;
+            lineConnections.forEach(conn => {
                 const p1 = antennas[conn[0]].position;
                 const p2 = antennas[conn[1]].position;
 
-                const positions = linkLines[i].geometry.attributes.position.array;
-                positions[0] = p1.x; positions[1] = p1.y; positions[2] = p1.z;
-                positions[3] = p2.x; positions[4] = p2.y; positions[5] = p2.z;
-                linkLines[i].geometry.attributes.position.needsUpdate = true;
+                const positions = linkLines[connIndex].geometry.attributes.position.array;
+                positions[0] = p1.x;
+                positions[1] = p1.y;
+                positions[2] = p1.z;
+                positions[3] = p2.x;
+                positions[4] = p2.y;
+                positions[5] = p2.z;
+
+                linkLines[connIndex].geometry.attributes.position.needsUpdate = true;
+                connIndex++;
+            });
+
+            for (let i = 0; i < 12; i++) {
+                const p1 = antennas[i].position;
+                const positions = vectorLines[i].geometry.attributes.position.array;
+                positions[0] = p1.x;
+                positions[1] = p1.y;
+                positions[2] = p1.z;
+                positions[3] = 0;
+                positions[4] = 0;
+                positions[5] = 0;
+                vectorLines[i].geometry.attributes.position.needsUpdate = true;
             }
         }
 
@@ -800,111 +890,158 @@
         const canvas = document.getElementById('ouroboros-canvas');
         const ctx = canvas.getContext('2d');
 
-        // CRITICAL FIX: Defined THREE.JS Clock global object
-        const clock = new THREE.Clock();
-
         function drawOuroboros(time) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const cx = canvas.width / 2; const cy = canvas.height / 2; const maxR = canvas.width * 0.4;
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const maxR = canvas.width * 0.4;
 
             const driftLimit = currentBand === 'Optical' ? 25 : 150;
             const driftErr = params.drift / driftLimit;
             const jitterErr = params.jitter / 30;
-            const totalInstability = (driftErr * 0.4 + jitterErr * 0.6) * 0.65; // High 12-node noise mitigation
+            const totalInstability = driftErr * 0.4 + jitterErr * 0.6;
 
-            ctx.lineWidth = 1.5; ctx.strokeStyle = '#0f172a'; ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = '#0f172a';
+            ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
 
-            // Crosshair grids
-            ctx.strokeStyle = 'rgba(30, 41, 59, 0.3)';
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, canvas.height - 10); ctx.moveTo(10, cy); ctx.lineTo(canvas.width - 10, cy); ctx.stroke();
+            ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+            ctx.beginPath();
+            ctx.moveTo(cx, 10); ctx.lineTo(cx, canvas.height - 10);
+            ctx.moveTo(10, cy); ctx.lineTo(canvas.width - 10, cy);
+            ctx.stroke();
 
-            // Plot orbital ring
             ctx.beginPath();
             const pointsCount = 180;
             for (let i = 0; i <= pointsCount; i++) {
                 const theta = (i / pointsCount) * Math.PI * 2;
                 let r = maxR;
-                r += Math.sin(theta * 5 + time * 5) * 2; // sub-carrier ripple
 
-                if (totalInstability > 0) r += Math.sin(theta * 3 + time * 3) * totalInstability * 15;
-                if (params.mode === 'collapse') r *= 0.48 + Math.sin(time * 2.5) * 0.08;
+                r += Math.sin(theta * 5 + time * 5) * 2;
 
-                const x = cx + Math.cos(theta) * r; const y = cy + Math.sin(theta) * r;
-                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                if (totalInstability > 0) {
+                    r += Math.sin(theta * 3 + time * 3) * totalInstability * 15;
+                }
+
+                if (params.mode === 'collapse') {
+                    const shrink = 0.72 + Math.sin(time * 2) * 0.12;
+                    r *= shrink;
+                }
+
+                const x = cx + Math.cos(theta) * r;
+                const y = cy + Math.sin(theta) * r;
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
             }
             ctx.closePath();
 
-            let ringColor = 'rgba(6, 182, 212, 0.8)';
-            if (currentBand === 'S') ringColor = 'rgba(34, 197, 94, 0.8)';
-            if (currentBand === 'THz') ringColor = 'rgba(236, 72, 153, 0.8)';
-            if (currentBand === 'Optical') ringColor = 'rgba(245, 158, 11, 0.8)';
+            let ringColor = 'rgba(6, 182, 212, 0.8)'; 
+            if (currentBand === 'S') ringColor = 'rgba(34, 197, 94, 0.8)'; 
+            if (currentBand === 'THz') ringColor = 'rgba(236, 72, 153, 0.8)'; 
+            if (currentBand === 'Optical') ringColor = 'rgba(245, 158, 11, 0.8)'; 
 
-            if (totalInstability > 0.55) ringColor = 'rgba(239, 68, 68, 0.8)';
-            else if (params.mode === 'collapse') ringColor = 'rgba(168, 85, 247, 0.9)';
+            if (totalInstability > 0.6) {
+                ringColor = 'rgba(239, 68, 68, 0.8)'; 
+            } else if (params.mode === 'collapse') {
+                ringColor = 'rgba(168, 85, 247, 0.9)'; 
+            }
 
-            ctx.strokeStyle = ringColor; ctx.lineWidth = 2.5; ctx.stroke();
+            ctx.strokeStyle = ringColor;
+            ctx.shadowColor = ringColor;
+            ctx.shadowBlur = totalInstability > 0.4 ? 2 : 12;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+            ctx.shadowBlur = 0;
 
-            // Trailing dot indicator
             const headTheta = (time * 1.5) % (Math.PI * 2);
             let headR = maxR;
-            if (totalInstability > 0) headR += Math.sin(headTheta * 3 + time * 3) * totalInstability * 15;
-            if (params.mode === 'collapse') headR *= 0.48 + Math.sin(time * 2.5) * 0.08;
-            ctx.beginPath(); ctx.arc(cx + Math.cos(headTheta) * headR, cy + Math.sin(headTheta) * headR, 4, 0, Math.PI * 2);
-            ctx.fillStyle = '#ffffff'; ctx.fill();
+            if (totalInstability > 0) {
+                headR += Math.sin(headTheta * 3 + time * 3) * totalInstability * 15;
+            }
+            if (params.mode === 'collapse') {
+                headR *= (0.72 + Math.sin(time * 2) * 0.12);
+            }
+            const hx = cx + Math.cos(headTheta) * headR;
+            const hy = cy + Math.sin(headTheta) * headR;
+            ctx.beginPath();
+            ctx.arc(hx, hy, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
         }
 
-        // --- MAIN RUNTIME ANIMATION LOOP ---
+        // --- MAIN SIMULATION LOOP ---
+        let clock = new THREE.Clock();
+
         function animate() {
             requestAnimationFrame(animate);
+
             const elapsed = clock.getElapsedTime();
             const delta = clock.getDelta();
             const b = BANDS[currentBand];
 
-            dustPoints.rotation.y = elapsed * 0.01;
-            updateDynamicTopology();
+            dustPoints.rotation.y = elapsed * 0.012; 
 
-            // Advance incoming wavefronts
-            const waveSpeed = params.switching * 2;
+            updateIcosahedralGeometry();
+
+            const waveSpeed = params.switching * 2; 
             const driftLimit = currentBand === 'Optical' ? 25 : 150;
             const totalInstability = (params.drift / driftLimit) * 0.4 + (params.jitter / 30) * 0.6;
 
             for (let i = 0; i < 12; i++) {
-                waveSpheres[i].children.forEach(wSphere => {
+                const emitter = waveSpheres[i];
+                emitter.children.forEach(wSphere => {
                     wSphere.userData.scaleFactor += delta * waveSpeed;
-                    if (wSphere.userData.scaleFactor > 1) wSphere.userData.scaleFactor = 0;
+                    if (wSphere.userData.scaleFactor > 1) {
+                        wSphere.userData.scaleFactor = 0;
+                    }
 
                     const progress = wSphere.userData.scaleFactor;
-                    const visualScale = visualR * (1 - progress);
+                    const visualScale = visualR * (1 - progress); 
                     
                     wSphere.scale.set(visualScale, visualScale, visualScale);
-                    wSphere.material.opacity = (1 - progress) * 0.25;
+                    wSphere.material.opacity = (1 - progress) * 0.28; 
                     
-                    if (Math.sin(elapsed * params.switching * 2) > 0) {
+                    const isAdvancedWave = Math.sin(elapsed * params.switching * 2) > 0;
+                    if (isAdvancedWave) {
                         wSphere.material.color.setHex(0xec4899); 
                     } else {
                         wSphere.material.color.setHex(b.colorHex); 
                     }
-                    if (totalInstability > 0.5) wSphere.material.color.setHex(0xf43f5e);
+                    
+                    if (totalInstability > 0.5) {
+                        wSphere.material.color.setHex(0xf43f5e); 
+                    }
                 });
             }
 
             let baseCoreScale = 1.0;
             if (params.mode === 'collapse') {
-                baseCoreScale = 0.35 + Math.sin(elapsed * 12) * 0.1;
-                coreMat.color.setHex(0xa855f7); innerCoreMesh.material.color.setHex(0xe0e7ff);
-            } else if (totalInstability > 0.55) {
-                baseCoreScale = 1.35 + Math.sin(elapsed * 4) * 0.2;
-                coreMat.color.setHex(0xf43f5e); innerCoreMesh.material.color.setHex(0x9f1239);
+                baseCoreScale = 0.50 + Math.sin(elapsed * 12) * 0.15; 
+                coreMat.color.setHex(0xa855f7); 
+                innerCoreMesh.material.color.setHex(0xe0e7ff);
+            } else if (totalInstability > 0.6) {
+                baseCoreScale = 1.35 + Math.sin(elapsed * 4) * 0.25;
+                coreMat.color.setHex(0xf43f5e);
+                innerCoreMesh.material.color.setHex(0x9f1239);
             } else {
                 baseCoreScale = 1.0 + Math.sin(elapsed * params.switching * 3) * 0.08;
-                coreMat.color.setHex(b.colorHex); innerCoreMesh.material.color.setHex(0xffffff);
+                coreMat.color.setHex(b.colorHex);
+                innerCoreMesh.material.color.setHex(0xffffff);
             }
+
             coreMesh.scale.set(baseCoreScale, baseCoreScale, baseCoreScale);
             innerCoreMesh.scale.set(baseCoreScale * 0.58, baseCoreScale * 0.58, baseCoreScale * 0.58);
             
-            coreMesh.rotation.y += delta * 1.2; coreMesh.rotation.z += delta * 0.6;
+            coreMesh.rotation.y += delta * 1.2;
+            coreMesh.rotation.z += delta * 0.6;
 
             drawOuroboros(elapsed);
+
             controls.update();
             renderer.render(scene, camera);
         }
@@ -915,6 +1052,7 @@
                 params.distance = parseFloat(e.target.value);
                 updateUIVals();
             });
+
             ui.jitterSlider.addEventListener('input', (e) => {
                 params.jitter = parseFloat(e.target.value);
                 if (params.jitter > 10 || params.drift > (currentBand === 'Optical' ? 5 : 30)) {
@@ -926,6 +1064,7 @@
                 }
                 updateUIVals();
             });
+
             ui.driftSlider.addEventListener('input', (e) => {
                 params.drift = parseInt(e.target.value);
                 if (params.drift > (currentBand === 'Optical' ? 5 : 30) || params.jitter > 10) {
@@ -937,8 +1076,16 @@
                 }
                 updateUIVals();
             });
-            ui.switchSlider.addEventListener('input', (e) => { params.switching = parseFloat(e.target.value); updateUIVals(); });
-            ui.harmSlider.addEventListener('input', (e) => { params.harmonic = parseInt(e.target.value); updateUIVals(); });
+
+            ui.switchSlider.addEventListener('input', (e) => {
+                params.switching = parseFloat(e.target.value);
+                updateUIVals();
+            });
+
+            ui.harmSlider.addEventListener('input', (e) => {
+                params.harmonic = parseInt(e.target.value);
+                updateUIVals();
+            });
 
             window.addEventListener('resize', () => {
                 camera.aspect = container.clientWidth / container.clientHeight;
