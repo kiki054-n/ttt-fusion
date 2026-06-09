@@ -45,6 +45,18 @@ TTT（Tri-Tetra Theory）
 
 ---
 
+### 🚀 オンライン・インテグレータ (Live Simulation)
+
+本理論に基づく「4方向（正四面体・5点系）」および「20方向（正20面体・13点系）」の波動干渉・収縮相転移をブラウザ上でリアルタイムに検証できる3Dシミュレータを公開しています。
+
+👉 **[TTT-Fusion インテグレータを実行する](https://kiki054-n.github.io/ttt-fusion/)**
+
+- **検証可能バンド**: S-Band(2.4GHz), W-Band(90GHz), THz-Band(300GHz), Optical(193THz)
+- **主要機能**: 幾何学的アライメント熱変位（Drift）および位相ジッタ（Jitter）の動的注入、Link $\gamma$（5→1 / 13→1）収縮相転移のトリガー、相空間（ウロボロスの環）のリアルタイムプロット。
+
+---
+
+
 ## 理論的背景 (Theoretical Background)
 
 ### 1. 00（双極ゼロ）構造とは
