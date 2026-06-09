@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>★ TTT-Fusion ★ Tetrahedron 5-Point Simulation</title>
+    <title>★ Seven Stars Theory ★ 5-Point System Simulation</title>
     <!-- Tailwind CSS for high-fidelity dark UI -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Three.js for 3D physics rendering -->
@@ -11,6 +11,7 @@
     <!-- OrbitControls for interactive 3D camera angles -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <style>
+        /* Custom styles for high-tech HUD look and glowing effects */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&display=swap');
         
         body {
@@ -22,6 +23,24 @@
 
         .hud-font {
             font-family: 'Orbitron', sans-serif;
+        }
+
+        .glow-cyan {
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .glow-magenta {
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.8), 0 0 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .border-glow-cyan {
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .border-glow-emerald {
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.5);
         }
 
         /* Customize scrollbars for a clean tech feel */
@@ -45,22 +64,21 @@
     <!-- HEADER / CONTROL HUD BAR -->
     <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur px-6 py-4 flex flex-wrap items-center justify-between gap-4 z-10 sticky top-0">
         <div class="flex items-center gap-3">
-            <a href="index.html" class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-teal-500 p-[2px] shadow-lg hover:scale-105 transition-transform">
-                <div class="w-full h-full bg-slate-950 rounded-[6px] flex items-center justify-center font-bold text-sm text-cyan-400 hud-font">◀ Portal</div>
-            </a>
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-magenta-500 p-[2px] shadow-lg">
+                <div class="w-full h-full bg-slate-950 rounded-[6px] flex items-center justify-center font-bold text-lg text-cyan-400 hud-font">★</div>
+            </div>
             <div>
-                <h1 class="text-xl font-bold tracking-wider hud-font text-cyan-400">TTT-FUSION TETRAHEDRON</h1>
-                <p class="text-xs text-slate-400">4方向正四面体照射場による動的死点の形成（5点系システムモデル）</p>
+                <h1 class="text-xl font-bold tracking-wider hud-font bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">SEVEN STARS THEORY</h1>
+                <p class="text-xs text-slate-400">Tri-Tetra Theory (TTT) 派生・5点系Wバンド(90GHz) 駆動シミュレータ</p>
             </div>
         </div>
-        <div class="flex flex-wrap items-center gap-3 text-xs">
-            <a href="https://doi.org/10.5281/zenodo.20551789" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-2.5 py-1 rounded flex items-center gap-1.5 transition-colors shadow shadow-blue-900/40">
-                <span class="opacity-70 font-bold hud-font">DOI</span>
-                <span class="hud-font">10.5281/zenodo.20551789</span>
-            </a>
-            <div class="bg-slate-900 border border-slate-800 px-3 py-1 rounded flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" id="system-pulse-dot"></span>
-                <span class="text-slate-300 hud-font" id="system-status-text">SYSTEM: T-TRAP LOCK</span>
+        <div class="flex items-center gap-4 text-xs">
+            <div class="bg-slate-900 border border-slate-800 px-3 py-1.5 rounded flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-slate-300 hud-font">SYSTEM: STABLE FUSION</span>
+            </div>
+            <div class="text-slate-500 hidden sm:block">
+                ORCID: <span class="text-slate-400">0009-0009-2972-6511</span>
             </div>
         </div>
     </header>
@@ -71,36 +89,10 @@
         <!-- LEFT PANEL: CONTROLS & ARGUMENTS (Lg: col-span-4) -->
         <section class="lg:col-span-4 flex flex-col gap-6 overflow-y-auto max-h-[calc(100vh-140px)] pr-2">
             
-            <!-- BAND SELECTOR CARD -->
-            <div class="bg-gradient-to-r from-slate-950 to-slate-900 border border-cyan-900/40 rounded-xl p-5 shadow-lg">
-                <h3 class="text-sm font-semibold tracking-wide text-cyan-400 mb-3 uppercase hud-font flex items-center gap-2">
-                    <svg class="w-4 h-4 text-cyan-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="animation-duration: 6s;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573-2.37-2.37 0 002.572-1.065z"></path></svg>
-                    周波数バンドの選択
-                </h3>
-                <div class="grid grid-cols-2 gap-2">
-                    <button onclick="changeBand('S')" id="btn-band-S" class="px-3 py-2 text-xs rounded border border-slate-800 text-slate-400 bg-slate-950/80 hover:bg-slate-900 transition-all text-left">
-                        <span class="block font-bold hud-font text-green-400 text-sm">S-Band (2.4GHz)</span>
-                        極超短波・125mm
-                    </button>
-                    <button onclick="changeBand('W')" id="btn-band-W" class="px-3 py-2 text-xs rounded border border-slate-800 text-slate-400 bg-slate-950/80 hover:bg-slate-900 transition-all text-left">
-                        <span class="block font-bold hud-font text-cyan-400 text-sm">W-Band (90GHz)</span>
-                        ミリ波・3.33mm
-                    </button>
-                    <button onclick="changeBand('THz')" id="btn-band-THz" class="px-3 py-2 text-xs rounded border border-slate-800 text-slate-400 bg-slate-950/80 hover:bg-slate-900 transition-all text-left">
-                        <span class="block font-bold hud-font text-pink-400 text-sm">THz-Band (300GHz)</span>
-                        サブミリ波・1.00mm
-                    </button>
-                    <button onclick="changeBand('Optical')" id="btn-band-Optical" class="px-3 py-2 text-xs rounded border border-slate-800 text-slate-400 bg-slate-950/80 hover:bg-slate-900 transition-all text-left">
-                        <span class="block font-bold hud-font text-amber-500 text-sm">Optical (193THz)</span>
-                        近赤外レーザー・1550nm
-                    </button>
-                </div>
-            </div>
-
             <!-- PRESETS CARD -->
             <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur">
                 <h3 class="text-sm font-semibold tracking-wide text-slate-300 mb-3 uppercase hud-font flex items-center gap-2">
-                    <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     シミュレーション・プリセット
                 </h3>
                 <div class="grid grid-cols-2 gap-2">
@@ -117,8 +109,8 @@
                         Phase Jitter
                     </button>
                     <button onclick="applyPreset('collapse')" class="px-3 py-2 text-xs rounded bg-purple-950/40 hover:bg-purple-900/50 border border-purple-800/60 text-purple-300 transition-all font-medium text-left">
-                        <span class="block font-bold hud-font text-purple-400 text-sm">収縮駆動 (5→1)</span>
-                        Phase Collapse
+                        <span class="block font-bold hud-font text-purple-400 text-sm">5→1 収縮駆動</span>
+                        5-to-1 Collapse
                     </button>
                 </div>
             </div>
@@ -136,11 +128,11 @@
                 <!-- Antennas Distance R -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
-                        <span class="text-slate-400 font-medium">基本波長 & 距離 R <span class="text-[10px] text-slate-500">(第7公理/幾何共鳴)</span></span>
+                        <span class="text-slate-400 font-medium">基本波長 & 距離 R <span class="text-[10px] text-slate-500">(第7公理/黄金比)</span></span>
                         <span class="hud-font text-cyan-400 font-bold" id="val-distance">R = 53.9 mm</span>
                     </div>
-                    <input type="range" id="param-distance" min="10" max="100" step="0.1" value="53.9" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-cyan-500">
-                    <span class="text-[10px] text-slate-500 text-right" id="desc-distance">90GHz λ=3.33mm の幾何共鳴構造</span>
+                    <input type="range" id="param-distance" min="10" max="100" step="0.5" value="53.9" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                    <span class="text-[10px] text-slate-500 text-right">90GHz λ=3.33mm の黄金比2次共鳴 (R = 10 * φ * λ)</span>
                 </div>
 
                 <!-- Phase Jitter -->
@@ -150,7 +142,7 @@
                         <span class="hud-font text-pink-400 font-bold" id="val-jitter">± 0.00°</span>
                     </div>
                     <input type="range" id="param-jitter" min="0" max="30" step="0.1" value="0" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-pink-500">
-                    <span class="text-[10px] text-slate-500 text-right" id="desc-jitter">0°で完全なコヒーレント相殺。重心の定常性を制御。</span>
+                    <span class="text-[10px] text-slate-500 text-right">0°で完全なコヒーレント相殺。大きくなると重心が揺らぐ。</span>
                 </div>
 
                 <!-- Thermal Drift -->
@@ -160,7 +152,7 @@
                         <span class="hud-font text-amber-400 font-bold" id="val-drift">0 μm</span>
                     </div>
                     <input type="range" id="param-drift" min="0" max="150" step="1" value="0" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-amber-500">
-                    <span class="text-[10px] text-slate-500 text-right" id="desc-drift">サブミクロン精度の崩れにより Σ vi = 0 の対称性が破れる。</span>
+                    <span class="text-[10px] text-slate-500 text-right">サブミクロン精度の崩れにより Σ vi = 0 の対称性が破れる。</span>
                 </div>
 
                 <!-- Switching Frequency -->
@@ -169,14 +161,14 @@
                         <span class="text-slate-400 font-medium">スイッチング周波数 <span class="text-[10px] text-slate-500">(Link α 時間の矢)</span></span>
                         <span class="hud-font text-purple-400 font-bold" id="val-switching">1.8 GHz</span>
                     </div>
-                    <input type="range" id="param-switching" min="0.1" max="10.0" step="0.1" value="1.8" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-purple-500">
-                    <span class="text-[10px] text-slate-500 text-right" id="desc-switching">内向波(遅延波)と外向波(先進波)を反転させ呼吸を定常化するサイクル。</span>
+                    <input type="range" id="param-switching" min="0.1" max="5.0" step="0.1" value="1.8" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-purple-500">
+                    <span class="text-[10px] text-slate-500 text-right">内向波(遅延波)と外向波(先進波)を反転させ呼吸を定常化するサイクル。</span>
                 </div>
 
                 <!-- 2w Harmonic ratio -->
                 <div class="flex flex-col gap-1.5">
                     <div class="flex justify-between text-xs">
-                        <span class="text-slate-400 font-medium">2倍高調波 (2ω) 混合比 <span class="text-[10px] text-slate-500">(Link γ 相転移)</span></span>
+                        <span class="text-slate-400 font-medium">2倍高調波 (180GHz) 混合比 <span class="text-[10px] text-slate-500">(Link γ 相転移)</span></span>
                         <span class="hud-font text-indigo-400 font-bold" id="val-harmonic">50%</span>
                     </div>
                     <input type="range" id="param-harmonic" min="0" max="100" step="1" value="50" class="w-full h-1.5 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-indigo-500">
@@ -189,19 +181,23 @@
                 <div>
                     <h3 class="text-sm font-semibold tracking-wide text-slate-300 mb-3 uppercase hud-font flex items-center gap-2">
                         <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                        TTT-Fusion 理論コア
+                        公理の物理的対応
                     </h3>
                     <div id="axiom-desc" class="text-xs text-slate-400 leading-relaxed space-y-2">
                         <p class="font-bold text-cyan-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span>
-                            4方向・正四面体トポロジー (5点系)
+                            第0公理 : 束縛のない関係性 (OOO)
                         </p>
-                        <p>中心(OOO)に対して、3次元空間が許す最小の非対称構成である4頂点から波を同期照射。マントル角（sp3結合角: 109.47°）で交差する4本のベクトルが原点で完全相殺（Σ vi = 0）し、量子化学の sp3 軌道や有機分子結合と同型の基本トラップを穿ちます。</p>
+                        <p>原点(0,0,0)における４本のベクトルの交差と完全相殺。Σ vi = 0 の動的死点が電磁気的に達成される。アライメント誤差はこの対称性を破ります。</p>
+                        <p class="pt-2 text-slate-500 italic">5点系 = 1つの中心(OOO) + 3次元空間の非対称正四面体頂点(4)</p>
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-slate-900 flex justify-between items-center text-[11px] text-slate-500">
                     <span>Axiom System - Tri-Tetra Theory</span>
-                    <span class="text-slate-400 font-bold">Sub-Theory: TTT-Fusion</span>
+                    <a href="https://github.com/kiki054-n/TTT" target="_blank" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                        kiki054-n/TTT 
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
                 </div>
             </div>
 
@@ -214,15 +210,15 @@
             <div class="bg-slate-950/40 border border-slate-800/80 rounded-xl p-4 flex flex-col flex-grow relative overflow-hidden group">
                 <!-- HUD Overlays inside viewport -->
                 <div class="absolute top-6 left-6 z-10 pointer-events-none select-none flex flex-col gap-2">
-                    <span class="hud-font font-black tracking-widest text-xs text-slate-500 uppercase" id="hud-viewport-title">3D TETRAHEDRAL FIELD VIEWPORT</span>
+                    <span class="hud-font font-black tracking-widest text-xs text-slate-500 uppercase">3D RF FIELD VIEWPORT</span>
                     <div class="flex items-center gap-1.5 bg-slate-950/80 border border-slate-800 px-2.5 py-1 rounded-md">
-                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping" id="viewport-state-dot"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></span>
                         <span class="text-[10px] font-bold text-slate-300 uppercase hud-font" id="viewport-state-badge">Coherent Trap</span>
                     </div>
                 </div>
 
                 <div class="absolute top-6 right-6 z-10 pointer-events-none select-none flex flex-col gap-1 items-end">
-                    <span class="text-[10px] text-slate-400 font-bold hud-font" id="hud-band-title">W-BAND (90GHz) MON</span>
+                    <span class="text-[10px] text-slate-400 font-bold hud-font">W-BAND (90GHz) MON</span>
                     <span class="text-xs text-cyan-400 font-bold hud-font" id="hud-frequency">λ: 3.33mm</span>
                 </div>
 
@@ -232,7 +228,7 @@
                 <!-- Interactive overlay info bar (bottom of 3D) -->
                 <div class="absolute bottom-6 left-6 right-6 z-10 pointer-events-none flex flex-wrap justify-between gap-4 text-[11px] hud-font text-slate-400 bg-slate-950/90 border border-slate-800/60 p-3 rounded-lg backdrop-blur">
                     <div class="flex items-center gap-1">
-                        <span class="text-slate-500">4-Node Phase:</span>
+                        <span class="text-slate-500">A/B/C/D Phase:</span>
                         <span class="text-cyan-400 font-bold animate-pulse" id="hud-phases">IN-PHASE LOCK</span>
                     </div>
                     <div class="flex items-center gap-1">
@@ -253,7 +249,7 @@
                 <div class="md:col-span-7 bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur flex flex-col">
                     <div class="flex items-center justify-between mb-3 border-b border-slate-900 pb-2">
                         <h4 class="text-xs font-bold uppercase hud-font text-slate-300 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-cyan-500" id="ouroboros-dot"></span>
+                            <span class="w-2 h-2 rounded-full bg-magenta-500"></span>
                             ウロボロスの環：Phase Space Plot
                         </h4>
                         <span class="text-[10px] hud-font text-slate-500">Y = 1/X Bi-polar Zero</span>
@@ -282,7 +278,7 @@
                                 </div>
                             </div>
                             <div class="text-[10px] text-slate-500 leading-relaxed">
-                                <p>※ 4方向アライメントおよびコヒーレンシが極大のとき、相空間軌道は完全なコヒーレント円環（ウロボロスの環）を描き、トンネル確率増強の窓を維持します。</p>
+                                <p>※ アライメント（熱変位）および制御ジッタが最小のとき、軌道は完全なコヒーレント円環（ウロボロスの環）として定常化。ノイズが極限を超えると軌道は破綻・霧散します。</p>
                             </div>
                         </div>
                     </div>
@@ -292,15 +288,30 @@
                 <div class="md:col-span-5 bg-slate-950/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur flex flex-col justify-between">
                     <div>
                         <h4 class="text-xs font-bold uppercase hud-font text-slate-300 mb-3 border-b border-slate-900 pb-2 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-cyan-500" id="specs-dot"></span>
-                            実機実装仕様 (TTT-Fusion)
+                            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                            Wバンド実機実装仕様
                         </h4>
-                        <ul class="text-xs text-slate-400 space-y-2.5" id="specs-list">
-                            <!-- Populated dynamically via JS based on selected band -->
+                        <ul class="text-xs text-slate-400 space-y-2.5">
+                            <li class="flex justify-between border-b border-slate-900/60 pb-1">
+                                <span class="text-slate-500">光源方式:</span>
+                                <span class="text-slate-300 font-medium">光電融合 (Microwave Photonics)</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-900/60 pb-1">
+                                <span class="text-slate-500">位相制御器:</span>
+                                <span class="text-slate-300 font-medium">LN超高速位相変調器 (LiNbO₃)</span>
+                            </li>
+                            <li class="flex justify-between border-b border-slate-900/60 pb-1">
+                                <span class="text-slate-500">照射素子:</span>
+                                <span class="text-slate-300 font-medium">UTC-PD (単一走行キャリアダイオード)</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="text-slate-500">加工母材:</span>
+                                <span class="text-slate-300 font-medium">低膨張セラミックス / ゼロデュア骨格</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="mt-4 bg-slate-900/40 border border-slate-800/60 p-2 rounded text-[10px] text-slate-500 italic">
-                        "正四面体対称は、量子化学スケール（WSP）にも核物理スケール（Fusion）にも同じ原理として現れる。"
+                        "5点系が描く幾何学歪みそのものを、波動の干渉エネルギーに変換して閉じ込め井戸を穿つ。"
                     </div>
                 </div>
 
@@ -310,127 +321,30 @@
 
     </main>
 
-    <!-- FOOTER LICENSE & DOI REFERENCE BAR -->
+    <!-- FOOTER LICENSE BAR -->
     <footer class="border-t border-slate-900 bg-slate-950/80 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-        <div class="flex flex-wrap items-center gap-2">
-            <span>© 2026 <strong>川上真潔 (Naoyuki Kawakami)</strong></span>
-            <span class="text-slate-700">|</span>
-            <a href="https://github.com/kiki054-n/ttt-fusion" target="_blank" class="text-cyan-500 hover:underline flex items-center gap-0.5">
-                GitHub: kiki054-n/ttt-fusion
-            </a>
+        <div>
+            © 2026 Naoyuki Kawakami (川上真潔). Tri-Tetra Theory (TTT).
         </div>
-        <div class="flex flex-wrap items-center gap-4">
-            <a href="https://doi.org/10.5281/zenodo.20551789" target="_blank" class="text-blue-400 hover:underline hud-font">
-                Preprint DOI: 10.5281/zenodo.20551789
-            </a>
+        <div class="flex gap-4">
             <span class="bg-slate-900 border border-slate-800 text-slate-400 px-2 py-0.5 rounded">CC BY-NC-SA 4.0</span>
+            <span>Date: 2026-06-07</span>
         </div>
     </footer>
 
-    <!-- SCRIPTING LOGIC: MULTI-BAND SYSTEM WITH TETRAHEDRAL GEOMETRY -->
+    <!-- INTERACTIVE SCRIPTING LOGIC (THREEJS + CUSTOM PHYSICS & CANVAS) -->
     <script>
-        // --- BAND DATABASE AND CONFIGS ---
-        const BANDS = {
-            S: {
-                title: "S-BAND (2.4GHz) 4-Node",
-                freqLabel: "λ: 125.00mm",
-                lambda: 125.0, 
-                defaultR: 202.2, 
-                minR: 50,
-                maxR: 400,
-                descDistance: "2.4GHz λ=125mm の正四面体1次共鳴 (R = 1.618 * λ)",
-                descJitter: "4方向のパッチ分配器のコヒーレント相殺。S帯では安価な同軸制御により高精度の対称閉じ込めが可能。",
-                descDrift: "熱変位許容値: ミリメートル級の緩い公差で重心安定を維持。",
-                descSwitching: "スイッチング周波数: 10MHz〜50MHz。4素子の高速スイッチングによる呼吸定常化。",
-                colorHex: 0x22c55e, 
-                colorClass: "green",
-                badgeClass: "bg-green-950 border-green-800 text-green-300",
-                specs: [
-                    { label: "波源・アンプ:", val: "4素子固体パワーアンプ (GaN-HEMT)" },
-                    { label: "位相制御器:", val: "4chデジタルマトリクス位相シフター" },
-                    { label: "照射素子:", val: "正四面体配置パッチアンテナアレイ" },
-                    { label: "対応実験系:", val: "トカマク内部RFアンテナ配置案" }
-                ]
-            },
-            W: {
-                title: "W-BAND (90GHz) 4-Node",
-                freqLabel: "λ: 3.33mm",
-                lambda: 3.33,
-                defaultR: 53.9,
-                minR: 10,
-                maxR: 100,
-                descDistance: "90GHz λ=3.33mm の正四面体2次共鳴 (R = 10 * φ * λ)",
-                descJitter: "0°で完全なコヒーレント相殺。4本のベクトルが中央で相殺（Σ vi = 0）。",
-                descDrift: "サブミクロン精度の崩れにより正四面体の完全な対称性が破れる。",
-                descSwitching: "内向波(遅延波)と外向波(先進波)を反転させ、中心核を安定保持するサイクル。",
-                colorHex: 0x06b6d4, 
-                colorClass: "cyan",
-                badgeClass: "bg-cyan-950 border-cyan-800 text-cyan-300",
-                specs: [
-                    { label: "光源方式:", val: "4ch光電融合 (Microwave Photonics)" },
-                    { label: "位相制御器:", val: "LN超高速位相変調マトリクス" },
-                    { label: "照射素子:", val: "UTC-PD超高速光検出アンテナ素子" },
-                    { label: "対応実験系:", val: "ICF（レーザー核融合）4方向照射" }
-                ]
-            },
-            THz: {
-                title: "THz-BAND (300GHz) 4-Node",
-                freqLabel: "λ: 1.00mm",
-                lambda: 1.0,
-                defaultR: 16.2, 
-                minR: 3,
-                maxR: 40,
-                descDistance: "300GHz λ=1.00mm の正四面体2次共鳴 (R = 10 * φ * λ)",
-                descJitter: "サブミリ波領域。わずかな位相揺らぎが4方向の完全対称クランチを激しく阻害。",
-                descDrift: "熱歪みに極めて鋭敏。ナノメートル精度での4頂点位置のアライメントが必要。",
-                descSwitching: "スイッチング率: 数GHz。4つの波の同時コヒーレンシーが要。",
-                colorHex: 0xec4899, 
-                colorClass: "pink",
-                badgeClass: "bg-pink-950 border-pink-800 text-pink-300",
-                specs: [
-                    { label: "光源方式:", val: "4アームTHzプラズマ波フォトミキサー" },
-                    { label: "位相制御器:", val: "マルチチャンネル・グラフェン調相素子" },
-                    { label: "照射素子:", val: "超精密金メッキ金属ホーンアンテナ" },
-                    { label: "対応実験系:", val: "Zピンチ高強度電磁パルス（4軸）" }
-                ]
-            },
-            Optical: {
-                title: "OPTICAL-BAND (193THz) 4-Node",
-                freqLabel: "λ: 1550nm",
-                lambda: 0.00155, 
-                defaultR: 25.1, 
-                minR: 5,
-                maxR: 80,
-                descDistance: "193THz λ=1550nm の正四面体2次共鳴 (R = 10 * φ * λ)",
-                descJitter: "フェムト秒コヒーレンス制御が要。量子干渉閉じ込めは、極低温でのみ維持可能。",
-                descDrift: "熱膨張によるピコメートル単位の変化で4方向の結合能が完全崩壊します。",
-                descSwitching: "光双安定性を利用した超高速全光型位相変調セルフフィードバック。",
-                colorHex: 0xf59e0b, 
-                colorClass: "amber",
-                badgeClass: "bg-amber-950 border-amber-800 text-amber-300",
-                specs: [
-                    { label: "光源方式:", val: "超狭線幅チューナブル・DFB半導体レーザー" },
-                    { label: "位相制御器:", val: "4出力シリコン光集積位相変調回路" },
-                    { label: "照射素子:", val: "シリコンフォトニクス集束型回折格子結合器" },
-                    { label: "対応構造:", val: "SOI (Silicon-on-Insulator) ナノ構造集積体" }
-                ]
-            }
-        };
-
-        // Current active band
-        let currentBand = 'W';
-
-        // Parameters
+        // --- PHYSICAL PARAMETERS & STATE ---
         let params = {
-            distance: 53.9,
-            jitter: 0,
-            drift: 0,
-            switching: 1.8,
-            harmonic: 50,
-            mode: 'ideal'
+            distance: 53.9,      // Antenna Distance R (mm)
+            jitter: 0,          // Phase Jitter (degrees)
+            drift: 0,           // Thermal alignment drift (micrometers)
+            switching: 1.8,     // Modulation switching rate (GHz)
+            harmonic: 50,       // 2w harmonic mixture percentage
+            mode: 'ideal'       // Mode: ideal, drift, jitter, collapse
         };
 
-        // UI DOM elements caching
+        // UI DOM elements
         const ui = {
             distSlider: document.getElementById('param-distance'),
             jitterSlider: document.getElementById('param-jitter'),
@@ -458,115 +372,81 @@
             barCoupling: document.getElementById('bar-coupling')
         };
 
-        // Band Shift handler
-        function changeBand(bandKey) {
-            currentBand = bandKey;
-            const b = BANDS[bandKey];
-
-            ui.hudFreq.textContent = b.freqLabel;
-            document.getElementById('hud-band-title').textContent = b.title;
-
-            ['S', 'W', 'THz', 'Optical'].forEach(k => {
-                const btn = document.getElementById(`btn-band-${k}`);
-                if (k === bandKey) {
-                    btn.className = `px-3 py-2 text-xs rounded border-2 border-${b.colorClass}-500 bg-${b.colorClass}-950/20 text-white transition-all text-left shadow-lg`;
-                } else {
-                    btn.className = "px-3 py-2 text-xs rounded border border-slate-800 text-slate-400 bg-slate-950/80 hover:bg-slate-900 transition-all text-left";
-                }
-            });
-
-            ui.distSlider.min = b.minR;
-            ui.distSlider.max = b.maxR;
-            params.distance = b.defaultR;
-            ui.distSlider.value = b.defaultR;
-
-            const isOptical = (bandKey === 'Optical');
-            ui.distVal.textContent = isOptical ? `R = ${b.defaultR.toFixed(1)} μm` : `R = ${b.defaultR.toFixed(1)} mm`;
-
-            document.getElementById('desc-distance').textContent = b.descDistance;
-            document.getElementById('desc-jitter').textContent = b.descJitter;
-            document.getElementById('desc-drift').textContent = b.descDrift;
-            document.getElementById('desc-switching').textContent = b.descSwitching;
-
-            const specsList = document.getElementById('specs-list');
-            specsList.innerHTML = '';
-            b.specs.forEach(spec => {
-                const li = document.createElement('li');
-                li.className = "flex justify-between border-b border-slate-900/60 pb-1";
-                li.innerHTML = `<span class="text-slate-500">${spec.label}</span><span class="text-slate-300 font-medium">${spec.val}</span>`;
-                specsList.appendChild(li);
-            });
-
-            const colorClass = b.colorClass;
-            document.getElementById('system-pulse-dot').className = `w-2 h-2 rounded-full bg-${colorClass}-500 animate-pulse`;
-            document.getElementById('ouroboros-dot').className = `w-2 h-2 rounded-full bg-${colorClass}-500`;
-            document.getElementById('specs-dot').className = `w-2 h-2 rounded-full bg-${colorClass}-500`;
-            
-            coreMesh.material.color.setHex(b.colorHex);
-
-            applyPreset('ideal');
-            updateUIVals();
-        }
-
-        // Preset Settings
+        // --- PRESET SYSTEM ---
         function applyPreset(mode) {
             params.mode = mode;
-            const b = BANDS[currentBand];
-            
             if (mode === 'ideal') {
-                params.distance = b.defaultR;
+                params.distance = 53.9;
                 params.jitter = 0;
                 params.drift = 0;
-                params.switching = currentBand === 'S' ? 0.8 : currentBand === 'Optical' ? 4.5 : 1.8;
+                params.switching = 1.8;
                 params.harmonic = 50;
-
                 ui.badge.textContent = "LOCK";
-                ui.badge.className = `text-[10px] ${b.badgeClass} px-2 py-0.5 rounded uppercase font-bold tracking-wider animate-pulse`;
+                ui.badge.className = "text-[10px] bg-cyan-950 border border-cyan-800 text-cyan-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider animate-pulse";
                 ui.vpState.textContent = "Coherent Trap";
-                ui.vpState.className = `text-[10px] font-bold text-${b.colorClass}-400 uppercase hud-font`;
+                ui.vpState.className = "text-[10px] font-bold text-cyan-400 uppercase hud-font";
                 ui.axiomDesc.innerHTML = `
-                    <p class="font-bold text-${b.colorClass}-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
-                        <span class="w-1.5 h-1.5 bg-${b.colorClass}-500 rounded-full"></span>
-                        4方向・正四面体トポロジー (5点系)
+                    <p class="font-bold text-cyan-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span>
+                        第0・1公理 : 束縛のない関係性 (OOO)
                     </p>
-                    <p>中心(OOO)に対して、3次元空間が許す最小の非対称構成である4頂点から波を同期照射。マントル角（sp3結合角: 109.47°）で交差する4本のベクトルが原点で完全相殺（Σ vi = 0）し、量子化学の sp3 軌道や有機分子結合と同型の基本トラップを穿ちます。</p>
+                    <p>原点(0,0,0)における４本のベクトルの交差と完全相殺。Σ vi = 0 の動的死点が電磁気的に達成される。アライメント誤差は0で、最高度の対称性を保っています。</p>
+                    <p class="pt-2 text-slate-500 italic">5点系 = 1つの中心(OOO) + 3次元空間の非対称正四面体頂点(4)</p>
                 `;
             } else if (mode === 'drift') {
-                params.distance = b.defaultR;
+                params.distance = 53.9;
                 params.jitter = 3.2;
-                params.drift = currentBand === 'Optical' ? 12 : 75; 
+                params.drift = 75; // 75 micrometers drift
                 params.switching = 1.2;
                 params.harmonic = 30;
-
                 ui.badge.textContent = "DRIFT";
                 ui.badge.className = "text-[10px] bg-amber-950 border border-amber-800 text-amber-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider";
                 ui.vpState.textContent = "Symmetry Broken";
                 ui.vpState.className = "text-[10px] font-bold text-amber-400 uppercase hud-font";
-                ui.axiomDesc.innerHTML = `<p class="font-bold text-amber-500 text-sm border-b border-slate-900 pb-1">アライメント熱変位の歪み</p><p>構造の歪み公差により、各ベクトルの幾何学的交点にズレが生じ、原点テンソル相殺が不完全（Σ vi ≠ 0）になります。00閉じ込め構造からのエネルギー漏出を表します。</p>`;
+                ui.axiomDesc.innerHTML = `
+                    <p class="font-bold text-amber-500 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span>
+                        アライメント破綻 (第6公理の歪み)
+                    </p>
+                    <p>物理構造の熱変位により、正四面体の対称位置が崩れ、原点の空間テンソル相殺が不完全（Σ vi ≠ 0）になります。井戸の底がブレてエネルギーが漏出しています。</p>
+                    <p class="pt-2 text-slate-500 italic">第3公理の立体相転移（10点）にズレが発生。</p>
+                `;
             } else if (mode === 'jitter') {
-                params.distance = b.defaultR;
-                params.jitter = 18.5;
-                params.drift = currentBand === 'Optical' ? 5 : 12;
+                params.distance = 53.9;
+                params.jitter = 18.5; // High Jitter
+                params.drift = 12;
                 params.switching = 0.8;
                 params.harmonic = 20;
-
-                ui.badge.textContent = "JITTER CHAOTIC";
+                ui.badge.textContent = "JITTER CHOTIC";
                 ui.badge.className = "text-[10px] bg-pink-950 border border-pink-800 text-pink-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider";
                 ui.vpState.textContent = "Phase Unlocked";
                 ui.vpState.className = "text-[10px] font-bold text-pink-400 uppercase hud-font";
-                ui.axiomDesc.innerHTML = `<p class="font-bold text-pink-500 text-sm border-b border-slate-900 pb-1">Link β (観測・位置確定) の阻害</p><p>位相コヒーレンシーが急激に低下。干渉定在波の重ね合わせが崩壊し、高効率な波束の収束・閉じ込め性能が維持できなくなります。</p>`;
+                ui.axiomDesc.innerHTML = `
+                    <p class="font-bold text-pink-500 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-pink-500 rounded-full"></span>
+                        Link β (観測・位置確定) の阻害
+                    </p>
+                    <p>ミリ波のコヒーレンシ（干渉度）が揺らぎ、位相が高速にズレるため、波束の収縮が起こせなくなります。プラズマは収束できず再び確率の霧へと霧散します。</p>
+                    <p class="pt-2 text-slate-500 italic">非可換な生命の調和状態が失われ、エントロピーが増大します。</p>
+                `;
             } else if (mode === 'collapse') {
-                params.distance = b.defaultR;
+                params.distance = 53.9;
                 params.jitter = 0.8;
                 params.drift = 0;
-                params.switching = currentBand === 'S' ? 2.5 : currentBand === 'Optical' ? 8.5 : 3.5;
-                params.harmonic = 85;
-
+                params.switching = 3.5; // High switching rate
+                params.harmonic = 85;  // Strong 2w harmonic integration
                 ui.badge.textContent = "COLLAPSE RUN";
                 ui.badge.className = "text-[10px] bg-purple-950 border border-purple-800 text-purple-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider animate-pulse";
-                ui.vpState.textContent = "5→1 Phase Collapse";
+                ui.vpState.textContent = "5→1 Phase Transition";
                 ui.vpState.className = "text-[10px] font-bold text-purple-400 uppercase hud-font animate-bounce";
-                ui.axiomDesc.innerHTML = `<p class="font-bold text-purple-400 text-sm border-b border-slate-900 pb-1">Link γ : 幾何共鳴 5 → 1 収縮</p><p>基本波と2倍高調波が完全に同期共鳴。正四面体場のエネルギーが集中的に重心の特異点(1)へクランチされます。</p>`;
+                ui.axiomDesc.innerHTML = `
+                    <p class="font-bold text-purple-400 text-sm border-b border-slate-900 pb-1 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                        Link γ : 5 → 1 収縮相転移
+                    </p>
+                    <p>基本波と2倍高調波の融合により、完全に縦波化(疎密共鳴)した波が、正四面体の4要素を1つのコア(1)へ非可換的に収縮させています。核融合状態を模しています。</p>
+                    <p class="pt-2 text-slate-500 italic">未来のポテンシャルへ吸い込まれる時間の反転がシミュレートされています。</p>
+                `;
             }
             updateSlidersFromParams();
             updateUIVals();
@@ -581,19 +461,14 @@
         }
 
         function updateUIVals() {
-            const b = BANDS[currentBand];
-            const isOptical = (currentBand === 'Optical');
-
-            ui.distVal.textContent = isOptical ? `R = ${parseFloat(params.distance).toFixed(1)} μm` : `R = ${parseFloat(params.distance).toFixed(1)} mm`;
+            ui.distVal.textContent = `R = ${parseFloat(params.distance).toFixed(1)} mm`;
             ui.jitterVal.textContent = `± ${parseFloat(params.jitter).toFixed(2)}°`;
-            
-            const driftValFormatted = isOptical ? `${parseInt(params.drift)} nm` : `${parseInt(params.drift)} μm`;
-            ui.driftVal.textContent = driftValFormatted;
+            ui.driftVal.textContent = `${parseInt(params.drift)} μm`;
             ui.switchVal.textContent = `${parseFloat(params.switching).toFixed(1)} GHz`;
             ui.harmVal.textContent = `${parseInt(params.harmonic)}%`;
 
-            const driftLimit = isOptical ? 25 : 150; 
-            const totalError = (params.jitter / 30) * 0.7 + (params.drift / driftLimit) * 0.3;
+            // Calculate metrics based on sliders
+            const totalError = (params.jitter / 30) * 0.7 + (params.drift / 150) * 0.3;
             const entropy = Math.max(0.005, totalError * 1.5).toFixed(3);
             const coupling = Math.max(0, 100 - (totalError * 140)).toFixed(1);
 
@@ -603,6 +478,7 @@
             ui.barEntropy.style.width = `${Math.min(100, entropy * 100)}%`;
             ui.barCoupling.style.width = `${coupling}%`;
 
+            // Color code indicator bars
             if (entropy > 0.5) {
                 ui.barEntropy.className = "bg-pink-500 h-1.5 rounded-full transition-all duration-300";
                 ui.statEntropy.className = "hud-font font-bold text-pink-400";
@@ -615,8 +491,8 @@
             }
 
             if (coupling > 80) {
-                ui.barCoupling.className = `bg-${b.colorClass}-500 h-1.5 rounded-full transition-all duration-300`;
-                ui.statCoupling.className = `hud-font font-bold text-${b.colorClass}-400`;
+                ui.barCoupling.className = "bg-cyan-500 h-1.5 rounded-full transition-all duration-300";
+                ui.statCoupling.className = "hud-font font-bold text-cyan-400";
             } else if (coupling > 40) {
                 ui.barCoupling.className = "bg-indigo-500 h-1.5 rounded-full transition-all duration-300";
                 ui.statCoupling.className = "hud-font font-bold text-indigo-400";
@@ -625,23 +501,24 @@
                 ui.statCoupling.className = "hud-font font-bold text-rose-400";
             }
 
-            const driftNorm = params.drift / driftLimit;
-            const vectorSumVal = Math.sqrt(driftNorm * driftNorm * 1.5 + (params.jitter * 0.005)).toFixed(3);
+            // Real-time HUD updates
+            const driftMm = params.drift / 1000;
+            const vectorSumVal = Math.sqrt(driftMm * driftMm * 1.5 + (params.jitter * 0.01)).toFixed(3);
             ui.hudVectorSum.textContent = `Σ vi = ${vectorSumVal}`;
-            if (vectorSumVal < 0.08) {
+            if (vectorSumVal < 0.1) {
                 ui.hudVectorSum.className = "text-emerald-400 font-bold";
-            } else if (vectorSumVal < 0.25) {
+            } else if (vectorSumVal < 0.4) {
                 ui.hudVectorSum.className = "text-amber-400 font-bold";
             } else {
                 ui.hudVectorSum.className = "text-rose-400 font-bold animate-pulse";
             }
 
             ui.hudDensity.textContent = `${coupling}%`;
-            ui.hudPhases.textContent = params.jitter > 12 ? "PHASE DE-COHERED" : "4-NODE PHASE LOCK";
-            ui.hudPhases.className = params.jitter > 12 ? "text-pink-400 font-bold animate-pulse" : `text-${b.colorClass}-400 font-bold`;
+            ui.hudPhases.textContent = params.jitter > 12 ? "PHASE DE-COHERED" : "IN-PHASE LOCK";
+            ui.hudPhases.className = params.jitter > 12 ? "text-pink-400 font-bold animate-pulse" : "text-cyan-400 font-bold";
         }
 
-        // --- THREE.JS GRAPHICS SCENE SETUP ---
+        // --- THREE.JS GRAPHICS SETUP ---
         const container = document.getElementById('three-container');
         const scene = new THREE.Scene();
         scene.fog = new THREE.FogExp2(0x030712, 0.008);
@@ -657,279 +534,445 @@
         const controls = new THREE.OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
-        controls.maxPolarAngle = Math.PI / 2 + 0.1;
-        controls.minDistance = 35;
-        controls.maxDistance = 280;
+        controls.maxPolarAngle = Math.PI / 2 + 0.1; // Limit panning too far below floor
+        controls.minDistance = 30;
+        controls.maxDistance = 300;
 
-        // Space dust particles
-        const particleCount = 800;
+        // Space Dust Background (OOO Potentials)
+        const particleCount = 1000;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
         const colors = new Float32Array(particleCount * 3);
+
         for (let i = 0; i < particleCount * 3; i += 3) {
             positions[i] = (Math.random() - 0.5) * 400;
             positions[i + 1] = (Math.random() - 0.5) * 400;
             positions[i + 2] = (Math.random() - 0.5) * 400;
-            colors[i] = 0.1; colors[i + 1] = 0.2 + Math.random() * 0.15; colors[i + 2] = 0.3 + Math.random() * 0.4;
+
+            colors[i] = 0.1;
+            colors[i + 1] = 0.2 + Math.random() * 0.2;
+            colors[i + 2] = 0.3 + Math.random() * 0.4;
         }
         particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         particleGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        const dustPoints = new THREE.Points(particleGeo, new THREE.PointsMaterial({ size: 1.5, vertexColors: true, transparent: true, opacity: 0.6 }));
+
+        const particleMat = new THREE.PointsMaterial({
+            size: 1.5,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6
+        });
+        const dustPoints = new THREE.Points(particleGeo, particleMat);
         scene.add(dustPoints);
 
-        // Center Core Mesh (★1: OOO)
+        // Core (★1: OOO) - Center Sphere
         const coreGeo = new THREE.SphereGeometry(6, 32, 32);
-        const coreMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, transparent: true, opacity: 0.8, wireframe: true });
+        const coreMat = new THREE.MeshBasicMaterial({
+            color: 0x06b6d4,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
         const coreMesh = new THREE.Mesh(coreGeo, coreMat);
         scene.add(coreMesh);
 
-        const innerCoreMesh = new THREE.Mesh(new THREE.SphereGeometry(3.4, 32, 32), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95 }));
+        // Inner solid core glow
+        const innerCoreGeo = new THREE.SphereGeometry(3.5, 32, 32);
+        const innerCoreMat = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.95
+        });
+        const innerCoreMesh = new THREE.Mesh(innerCoreGeo, innerCoreMat);
         scene.add(innerCoreMesh);
 
-        // Grid Floor
+        // Grid Floor for spatial perspective
         const gridHelper = new THREE.GridHelper(200, 20, 0x1e293b, 0x0f172a);
         gridHelper.position.y = -40;
         scene.add(gridHelper);
 
-        // --- TETRAHEDRAL SPECIFIC COORDINATES ---
-        const visualR = 53.9;
-        const rawTetraCoords = [
-            new THREE.Vector3(0, 0, 1),
-            new THREE.Vector3((2 * Math.sqrt(2) / 3), 0, (-1 / 3)),
-            new THREE.Vector3((-Math.sqrt(2) / 3), (Math.sqrt(6) / 3), (-1 / 3)),
-            new THREE.Vector3((-Math.sqrt(2) / 3), (-Math.sqrt(6) / 3), (-1 / 3))
-        ];
+        // --- ANTENNAS AND PYRAMIDS (Tetrahedral configuration) ---
+        const antennas = [];
+        const antennaMaterials = [];
+        const waveSpheres = [];
 
-        const connections = [
+        // Colors matching TTT system
+        const nodeColors = [0xec4899, 0xf59e0b, 0x10b981, 0x6366f1]; // magenta, amber, emerald, indigo
+
+        // Generate the 4 antennas of tetrahedron
+        for (let i = 0; i < 4; i++) {
+            // High-tech crystalline antenna geometry
+            const antGeo = new THREE.ConeGeometry(4, 10, 4);
+            const antMat = new THREE.MeshBasicMaterial({
+                color: nodeColors[i],
+                wireframe: true
+            });
+            const antMesh = new THREE.Mesh(antGeo, antMat);
+            
+            // Add a bright point light indicator inside antenna
+            const indicatorGeo = new THREE.SphereGeometry(1, 8, 8);
+            const indicatorMat = new THREE.MeshBasicMaterial({ color: nodeColors[i] });
+            const indicator = new THREE.Mesh(indicatorGeo, indicatorMat);
+            indicator.position.y = 5;
+            antMesh.add(indicator);
+
+            scene.add(antMesh);
+            antennas.push(antMesh);
+            antennaMaterials.push(antMat);
+
+            // Add Wave emitters
+            const waveGroup = new THREE.Group();
+            for (let j = 0; j < 3; j++) {
+                const sphereGeo = new THREE.SphereGeometry(1, 16, 16);
+                const sphereMat = new THREE.MeshBasicMaterial({
+                    color: nodeColors[i],
+                    transparent: true,
+                    opacity: 0.3,
+                    wireframe: true
+                });
+                const wSphere = new THREE.Mesh(sphereGeo, sphereMat);
+                wSphere.userData = { scaleFactor: j * 0.33 }; // stagger the wave emission
+                waveGroup.add(wSphere);
+            }
+            scene.add(waveGroup);
+            waveSpheres.push(waveGroup);
+        }
+
+        // Connecting lines showing relations/links
+        const linkLines = [];
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x334155,
+            transparent: true,
+            opacity: 0.6
+        });
+
+        // 6 Link lines for 4 vertices of a tetrahedron
+        const lineConnections = [
             [0, 1], [0, 2], [0, 3],
             [1, 2], [1, 3],
             [2, 3]
         ];
 
-        const antennas = [];
-        const waveSpheres = [];
-        const linkLines = [];
+        lineConnections.forEach(() => {
+            const geom = new THREE.BufferGeometry();
+            const positions = new Float32Array(6); // 2 points * 3 coordinates
+            geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const line = new THREE.Line(geom, lineMaterial);
+            scene.add(line);
+            linkLines.push(line);
+        });
+
+        // Laser vector lines towards origin (0,0,0)
         const vectorLines = [];
-
         for (let i = 0; i < 4; i++) {
-            const nodeColor = palette[i % palette.length];
-            const antMesh = new THREE.Mesh(new THREE.ConeGeometry(3.5, 9, 4), new THREE.MeshBasicMaterial({ color: nodeColor, wireframe: true }));
-            const indicator = new THREE.Mesh(new THREE.SphereGeometry(0.8, 8, 8), new THREE.MeshBasicMaterial({ color: nodeColor }));
-            indicator.position.y = 4.5;
-            antMesh.add(indicator);
-            scene.add(antMesh);
-            antennas.push(antMesh);
-
-            const waveGroup = new THREE.Group();
-            for (let j = 0; j < 3; j++) {
-                const wSphere = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), new THREE.MeshBasicMaterial({ color: nodeColor, transparent: true, opacity: 0.28, wireframe: true }));
-                wSphere.userData = { scaleFactor: j * 0.33 };
-                waveGroup.add(wSphere);
-            }
-            scene.add(waveGroup);
-            waveSpheres.push(waveGroup);
-
-            // Vector lines pointing to center
             const vGeom = new THREE.BufferGeometry();
-            vGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-            const vLine = new THREE.Line(vGeom, new THREE.LineBasicMaterial({ color: nodeColor, transparent: true, opacity: 0.4 }));
+            const positions = new Float32Array(6);
+            vGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const vLine = new THREE.Line(vGeom, new THREE.LineBasicMaterial({
+                color: nodeColors[i],
+                transparent: true,
+                opacity: 0.4
+            }));
             scene.add(vLine);
             vectorLines.push(vLine);
         }
 
-        // Connecting boundary lines (6 edges)
-        for (let i = 0; i < 6; i++) {
-            const geom = new THREE.BufferGeometry();
-            geom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6), 3));
-            const line = new THREE.Line(geom, new THREE.LineBasicMaterial({ color: 0x334155, transparent: true, opacity: 0.55 }));
-            scene.add(line);
-            linkLines.push(line);
-        }
-
-        // Dynamic spatial setup and drift mapping
+        // Update Position based on R and Drift
         function updateTetrahedralGeometry() {
-            const limitDrift = currentBand === 'Optical' ? 25 : 150;
-            const normalizedDrift = (params.drift / limitDrift) * 3.5;
+            const R = params.distance;
+            const drift = params.drift / 500; // Scaled to viewport visualization
 
-            const activeCoords = rawTetraCoords.map((rawV, idx) => {
-                const targetCoord = rawV.clone().normalize().multiplyScalar(visualR);
-                
+            // Base ideal positions of Tetrahedron
+            let baseCoords = [
+                new THREE.Vector3(0, 0, R),
+                new THREE.Vector3((2 * Math.sqrt(2) / 3) * R, 0, (-1 / 3) * R),
+                new THREE.Vector3((-Math.sqrt(2) / 3) * R, (Math.sqrt(6) / 3) * R, (-1 / 3) * R),
+                new THREE.Vector3((-Math.sqrt(2) / 3) * R, (-Math.sqrt(6) / 3) * R, (-1 / 3) * R)
+            ];
+
+            // Apply drifting and jittering directly to node structures to visualize "symmetry breaking"
+            antennas.forEach((ant, idx) => {
+                const targetCoord = baseCoords[idx].clone();
                 if (idx === 1 && params.drift > 0) {
-                    targetCoord.x += normalizedDrift * 2.5;
-                    targetCoord.y += normalizedDrift * 1.5;
-                    targetCoord.z += normalizedDrift * 1.0;
+                    // Thermal expansion drift acts non-uniformly on Antenna B
+                    targetCoord.x += drift * 15;
+                    targetCoord.y += drift * 5;
                 }
-                
                 if (params.jitter > 0) {
-                    const elapsedClock = Date.now() * 0.01;
-                    targetCoord.x += Math.sin(elapsedClock + idx) * (params.jitter / 15);
-                    targetCoord.y += Math.cos(elapsedClock - idx) * (params.jitter / 15);
+                    // Jitter applies fine micro-oscillations based on current state
+                    const t = Date.now() * 0.01;
+                    targetCoord.x += Math.sin(t + idx) * (params.jitter / 15);
+                    targetCoord.y += Math.cos(t - idx) * (params.jitter / 15);
                 }
-                return targetCoord;
+
+                ant.position.copy(targetCoord);
+                
+                // Align cone orientations to look directly at the central origin (0,0,0) with minor drift errors
+                ant.lookAt(new THREE.Vector3(0, 0, 0));
+                ant.rotateX(Math.PI / 2); // Correct orientation since Cone points up on y
+
+                // Place the pulsing wave group emitters at the antenna's exact location
+                waveSpheres[idx].position.copy(targetCoord);
             });
 
-            for (let i = 0; i < 4; i++) {
-                antennas[i].position.copy(activeCoords[i]);
-                antennas[i].lookAt(new THREE.Vector3(0, 0, 0));
-                antennas[i].rotateX(Math.PI / 2);
-                waveSpheres[i].position.copy(activeCoords[i]);
-
-                const positions = vectorLines[i].geometry.attributes.position.array;
-                positions[0] = activeCoords[i].x; positions[1] = activeCoords[i].y; positions[2] = activeCoords[i].z;
-                positions[3] = 0; positions[4] = 0; positions[5] = 0;
-                vectorLines[i].geometry.attributes.position.needsUpdate = true;
-            }
-
-            for (let i = 0; i < 6; i++) {
-                const conn = connections[i];
+            // Update 6 outer boundary links
+            let connIndex = 0;
+            lineConnections.forEach(conn => {
                 const p1 = antennas[conn[0]].position;
                 const p2 = antennas[conn[1]].position;
 
-                const positions = linkLines[i].geometry.attributes.position.array;
-                positions[0] = p1.x; positions[1] = p1.y; positions[2] = p1.z;
-                positions[3] = p2.x; positions[4] = p2.y; positions[5] = p2.z;
-                linkLines[i].geometry.attributes.position.needsUpdate = true;
+                const positions = linkLines[connIndex].geometry.attributes.position.array;
+                positions[0] = p1.x;
+                positions[1] = p1.y;
+                positions[2] = p1.z;
+                positions[3] = p2.x;
+                positions[4] = p2.y;
+                positions[5] = p2.z;
+
+                linkLines[connIndex].geometry.attributes.position.needsUpdate = true;
+                connIndex++;
+            });
+
+            // Update core vector rays towards center
+            for (let i = 0; i < 4; i++) {
+                const p1 = antennas[i].position;
+                const positions = vectorLines[i].geometry.attributes.position.array;
+                positions[0] = p1.x;
+                positions[1] = p1.y;
+                positions[2] = p1.z;
+                // Origin (0,0,0) is center
+                positions[3] = 0;
+                positions[4] = 0;
+                positions[5] = 0;
+                vectorLines[i].geometry.attributes.position.needsUpdate = true;
             }
         }
 
         // --- OUROBOROS LOOP: 2D PARAMETRIC PLOTTER ---
         const canvas = document.getElementById('ouroboros-canvas');
         const ctx = canvas.getContext('2d');
-        const clock = new THREE.Clock();
 
         function drawOuroboros(time) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const cx = canvas.width / 2; const cy = canvas.height / 2; const maxR = canvas.width * 0.4;
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const maxR = canvas.width * 0.4;
 
-            const driftLimit = currentBand === 'Optical' ? 25 : 150;
-            const driftErr = params.drift / driftLimit;
+            // Instability deforms the ideal circle
+            const driftErr = params.drift / 150;
             const jitterErr = params.jitter / 30;
             const totalInstability = driftErr * 0.4 + jitterErr * 0.6;
 
-            ctx.lineWidth = 1.5; ctx.strokeStyle = '#0f172a'; ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = '#0f172a';
+            ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
 
-            ctx.strokeStyle = 'rgba(30, 41, 59, 0.3)';
-            ctx.beginPath(); ctx.moveTo(cx, 10); ctx.lineTo(cx, canvas.height - 10); ctx.moveTo(10, cy); ctx.lineTo(canvas.width - 10, cy); ctx.stroke();
+            // Center crosshairs (bipolar zero)
+            ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
+            ctx.beginPath();
+            ctx.moveTo(cx, 10); ctx.lineTo(cx, canvas.height - 10);
+            ctx.moveTo(10, cy); ctx.lineTo(canvas.width - 10, cy);
+            ctx.stroke();
 
+            // Render parametric Ouroboros Orbit
             ctx.beginPath();
             const pointsCount = 180;
             for (let i = 0; i <= pointsCount; i++) {
                 const theta = (i / pointsCount) * Math.PI * 2;
+                
+                // Base circular orbit
                 let r = maxR;
+
+                // Add harmonic ripple/pulsing (W-Band sub-carrier)
                 r += Math.sin(theta * 5 + time * 5) * 2;
 
-                if (totalInstability > 0) r += Math.sin(theta * 3 + time * 3) * totalInstability * 15;
-                if (params.mode === 'collapse') r *= 0.75 + Math.sin(time * 2.5) * 0.08;
+                // Apply instability (breaks perfect circle, introduces chaos / Lissajous distortion)
+                if (totalInstability > 0) {
+                    const chaosFactor = Math.sin(theta * 3 + time * 3) * totalInstability * 15;
+                    r += chaosFactor;
+                }
 
-                const x = cx + Math.cos(theta) * r; const y = cy + Math.sin(theta) * r;
-                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                // If collapse mode is on, shrink towards zero (Y = 1/X phase limit)
+                if (params.mode === 'collapse') {
+                    const shrink = 0.75 + Math.sin(time * 2) * 0.15;
+                    r *= shrink;
+                }
+
+                const x = cx + Math.cos(theta) * r;
+                const y = cy + Math.sin(theta) * r;
+
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
             }
             ctx.closePath();
 
-            let ringColor = 'rgba(6, 182, 212, 0.8)';
-            if (currentBand === 'S') ringColor = 'rgba(34, 197, 94, 0.8)';
-            if (currentBand === 'THz') ringColor = 'rgba(236, 72, 153, 0.8)';
-            if (currentBand === 'Optical') ringColor = 'rgba(245, 158, 11, 0.8)';
+            // Perfect ring glow vs chaos tint
+            let ringColor = 'rgba(6, 182, 212, 0.8)'; // Cyan
+            if (totalInstability > 0.6) {
+                ringColor = 'rgba(236, 72, 153, 0.8)'; // Magenta
+            } else if (totalInstability > 0.15) {
+                ringColor = 'rgba(245, 158, 11, 0.8)'; // Amber
+            } else if (params.mode === 'collapse') {
+                ringColor = 'rgba(168, 85, 247, 0.9)'; // Purple collapse
+            }
 
-            if (totalInstability > 0.55) ringColor = 'rgba(239, 68, 68, 0.8)';
-            else if (params.mode === 'collapse') ringColor = 'rgba(168, 85, 247, 0.9)';
+            ctx.strokeStyle = ringColor;
+            ctx.shadowColor = ringColor;
+            ctx.shadowBlur = totalInstability > 0.4 ? 2 : 12;
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+            ctx.shadowBlur = 0; // reset glow
 
-            ctx.strokeStyle = ringColor; ctx.lineWidth = 2.5; ctx.stroke();
-
+            // Draw sliding head dot (representing current system vector point)
             const headTheta = (time * 1.5) % (Math.PI * 2);
             let headR = maxR;
-            if (totalInstability > 0) headR += Math.sin(headTheta * 3 + time * 3) * totalInstability * 15;
-            if (params.mode === 'collapse') headR *= 0.75 + Math.sin(time * 2.5) * 0.08;
-            ctx.beginPath(); ctx.arc(cx + Math.cos(headTheta) * headR, cy + Math.sin(headTheta) * headR, 4, 0, Math.PI * 2);
-            ctx.fillStyle = '#ffffff'; ctx.fill();
+            if (totalInstability > 0) {
+                headR += Math.sin(headTheta * 3 + time * 3) * totalInstability * 15;
+            }
+            if (params.mode === 'collapse') {
+                headR *= (0.75 + Math.sin(time * 2) * 0.15);
+            }
+            const hx = cx + Math.cos(headTheta) * headR;
+            const hy = cy + Math.sin(headTheta) * headR;
+            ctx.beginPath();
+            ctx.arc(hx, hy, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
         }
 
-        // --- MAIN RUNTIME ANIMATION LOOP ---
+        // --- MAIN SIMULATION LOOP ---
+        let clock = new THREE.Clock();
+
         function animate() {
             requestAnimationFrame(animate);
+
             const elapsed = clock.getElapsedTime();
             const delta = clock.getDelta();
-            const b = BANDS[currentBand];
 
-            dustPoints.rotation.y = elapsed * 0.01;
+            // 1. Slow cosmic background rotate
+            dustPoints.rotation.y = elapsed * 0.015;
+
+            // 2. Compute live dimensions
             updateTetrahedralGeometry();
 
-            const waveSpeed = params.switching * 2;
-            const driftLimit = currentBand === 'Optical' ? 25 : 150;
-            const totalInstability = (params.drift / driftLimit) * 0.4 + (params.jitter / 30) * 0.6;
+            // 3. Dynamic Wave scaling representing Millimeter RF propagating inwards
+            const waveSpeed = params.switching * 2; // maps switching speed to expansion velocity
+            const totalInstability = (params.drift / 150) * 0.4 + (params.jitter / 30) * 0.6;
 
             for (let i = 0; i < 4; i++) {
-                waveSpheres[i].children.forEach(wSphere => {
+                const emitter = waveSpheres[i];
+                emitter.children.forEach(wSphere => {
+                    // Progress factor loops 0 -> 1
                     wSphere.userData.scaleFactor += delta * waveSpeed;
-                    if (wSphere.userData.scaleFactor > 1) wSphere.userData.scaleFactor = 0;
+                    if (wSphere.userData.scaleFactor > 1) {
+                        wSphere.userData.scaleFactor = 0;
+                    }
 
+                    // Scaled geometry representing wave front advancing toward center
                     const progress = wSphere.userData.scaleFactor;
-                    const visualScale = visualR * (1 - progress);
+                    const scale = params.distance * (1 - progress);
                     
-                    wSphere.scale.set(visualScale, visualScale, visualScale);
+                    wSphere.scale.set(scale, scale, scale);
+
+                    // Handle transparency: fades as it converges or diverges
                     wSphere.material.opacity = (1 - progress) * 0.35;
                     
-                    if (Math.sin(elapsed * params.switching * 2) > 0) {
-                        wSphere.material.color.setHex(0xec4899); 
+                    // Toggle colors rhythmically to represent "breathing" switching cycle
+                    const isAdvancedWave = Math.sin(elapsed * params.switching * 2) > 0;
+                    if (isAdvancedWave) {
+                        // Advanced wave (magenta outward)
+                        wSphere.material.color.setHex(0xec4899);
                     } else {
-                        wSphere.material.color.setHex(b.colorHex); 
+                        // Delay wave (cyan inward)
+                        wSphere.material.color.setHex(0x06b6d4);
                     }
-                    if (totalInstability > 0.5) wSphere.material.color.setHex(0xf43f5e);
+                    
+                    if (totalInstability > 0.5) {
+                        // Wave decoherence: distort color towards red/purple
+                        wSphere.material.color.setHex(0xf43f5e);
+                    }
                 });
             }
 
+            // 4. Central Core breathing / collapsing dynamics
             let baseCoreScale = 1.0;
             if (params.mode === 'collapse') {
-                baseCoreScale = 0.6 + Math.sin(elapsed * 12) * 0.1;
-                coreMat.color.setHex(0xa855f7); innerCoreMesh.material.color.setHex(0xe0e7ff);
-            } else if (totalInstability > 0.55) {
-                baseCoreScale = 1.35 + Math.sin(elapsed * 4) * 0.2;
-                coreMat.color.setHex(0xf43f5e); innerCoreMesh.material.color.setHex(0x9f1239);
+                // High density compression (5->1 transition)
+                baseCoreScale = 0.55 + Math.sin(elapsed * 12) * 0.15;
+                coreMat.color.setHex(0xa855f7); // Glowing purple
+                innerCoreMesh.material.color.setHex(0xe0e7ff);
+            } else if (totalInstability > 0.6) {
+                // Decay/De-cohering core (Wobbly, red-hot)
+                baseCoreScale = 1.3 + Math.sin(elapsed * 4) * 0.25;
+                coreMat.color.setHex(0xf43f5e);
+                innerCoreMesh.material.color.setHex(0x9f1239);
             } else {
+                // Coherent trapping core (Stable cyan pulsing)
                 baseCoreScale = 1.0 + Math.sin(elapsed * params.switching * 3) * 0.08;
-                coreMat.color.setHex(b.colorHex); innerCoreMesh.material.color.setHex(0xffffff);
+                coreMat.color.setHex(0x06b6d4);
+                innerCoreMesh.material.color.setHex(0xffffff);
             }
+
             coreMesh.scale.set(baseCoreScale, baseCoreScale, baseCoreScale);
             innerCoreMesh.scale.set(baseCoreScale * 0.58, baseCoreScale * 0.58, baseCoreScale * 0.58);
             
-            coreMesh.rotation.y += delta * 1.2; coreMesh.rotation.z += delta * 0.6;
+            // Core rotate showing internal dynamic equilibrium spin
+            coreMesh.rotation.y += delta * 1.5;
+            coreMesh.rotation.z += delta * 0.8;
 
+            // 5. Update parametric Ouroboros 2D Graph
             drawOuroboros(elapsed);
+
+            // 6. Camera Orbit damping update
             controls.update();
+
+            // Render 3D Frame
             renderer.render(scene, camera);
         }
 
         // --- CONTROLS EVENT HANDLERS ---
         function setupEventListeners() {
+            // Live Slider updates
             ui.distSlider.addEventListener('input', (e) => {
                 params.distance = parseFloat(e.target.value);
                 updateUIVals();
             });
+
             ui.jitterSlider.addEventListener('input', (e) => {
                 params.jitter = parseFloat(e.target.value);
-                if (params.jitter > 10 || params.drift > (currentBand === 'Optical' ? 5 : 30)) {
+                if (params.jitter > 10 || params.drift > 30) {
                     params.mode = 'custom_broken';
-                    ui.badge.textContent = "DECAY";
+                    ui.badge.textContent = "CUSTOM DECAY";
                     ui.badge.className = "text-[10px] bg-red-950 border border-red-800 text-red-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider";
-                    ui.vpState.textContent = "Symmetry Broken";
-                    ui.vpState.className = "text-[10px] font-bold text-red-400 uppercase hud-font animate-pulse";
                 }
                 updateUIVals();
             });
+
             ui.driftSlider.addEventListener('input', (e) => {
                 params.drift = parseInt(e.target.value);
-                if (params.drift > (currentBand === 'Optical' ? 5 : 30) || params.jitter > 10) {
+                if (params.drift > 30 || params.jitter > 10) {
                     params.mode = 'custom_broken';
-                    ui.badge.textContent = "DECAY";
+                    ui.badge.textContent = "CUSTOM DECAY";
                     ui.badge.className = "text-[10px] bg-red-950 border border-red-800 text-red-300 px-2 py-0.5 rounded uppercase font-bold tracking-wider";
-                    ui.vpState.textContent = "Symmetry Broken";
-                    ui.vpState.className = "text-[10px] font-bold text-red-400 uppercase hud-font animate-pulse";
                 }
                 updateUIVals();
             });
-            ui.switchSlider.addEventListener('input', (e) => { params.switching = parseFloat(e.target.value); updateUIVals(); });
-            ui.harmSlider.addEventListener('input', (e) => { params.harmonic = parseInt(e.target.value); updateUIVals(); });
 
+            ui.switchSlider.addEventListener('input', (e) => {
+                params.switching = parseFloat(e.target.value);
+                updateUIVals();
+            });
+
+            ui.harmSlider.addEventListener('input', (e) => {
+                params.harmonic = parseInt(e.target.value);
+                updateUIVals();
+            });
+
+            // Handle window resizing
             window.addEventListener('resize', () => {
                 camera.aspect = container.clientWidth / container.clientHeight;
                 camera.updateProjectionMatrix();
@@ -940,8 +983,8 @@
         // --- INITIALIZATION ---
         window.onload = function() {
             setupEventListeners();
-            changeBand('W'); 
-            animate();
+            applyPreset('ideal'); // Launch with Ideal Symmetry default
+            animate();            // Fire animation loop
         };
     </script>
 </body>
