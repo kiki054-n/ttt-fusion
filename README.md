@@ -1,3 +1,11 @@
+> ### ⚠️ 撤回注記 — 2026-09-03
+>
+> **本リポジトリが提案する「00ポテンシャルによる核融合トンネル確率の増強」（波動干渉機構）は、本リポジトリ自身の式と `docs/experiment_design.md` §6.2 が指定するパラメータを用いた数値検証によって棄却されました。**
+> 検証の詳細は [`docs/falsification_00potential.md`](docs/falsification_00potential.md)、再現用スクリプトは [`scripts/verify_00potential.py`](scripts/verify_00potential.py) にあります（`numpy`/`scipy` のみに依存）。
+> 以下の原文は削除せず、反証可能性の原則に従って否定的結果の記録として残します。棄却されなかった検討と、置き換えとなる3つの検証可能な路線については上記文書の §5 以降を参照してください。
+
+---
+
 # TTT-Fusion
 ## 波動干渉による 00ポテンシャル生成と核融合トンネル確率増強の理論的検討
 ### *A Sub-Theory of Tri-Tetra Theory (TTT)*
