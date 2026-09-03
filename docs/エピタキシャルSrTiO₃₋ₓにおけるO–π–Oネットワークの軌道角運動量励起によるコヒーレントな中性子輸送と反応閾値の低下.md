@@ -28,3 +28,4 @@ Under circular THz excitation, the driven precessional motion (gyro-effect) of t
 
 ## 3. Experimental Setup & 16-State Control Matrix
 To achieve absolute reproducibility and anti-falsifiability, experiments were conducted using an ultra-high vacuum (UHV) micro-calorimetry chamber integrated with a 10 Hz lock-in detection system.
+
