@@ -1,3 +1,10 @@
+> ### ⚠️ 撤回注記 — 2026-09-03
+>
+> **§4.2 の拡張ポテンシャル（boxed 式）の 00ポテンシャル項は棄却されました。** 第3項 `+½·k00·(R − R_He)²` は `R ≠ R_He` の全域で正であり、障壁領域（R = 3.3〜144 fm）はまさにその領域なので障壁を押し上げます。`experiment_design.md` §6.2 の推奨値 k00 = 10 MeV/fm² を入れると障壁の最大値は 0.323 MeV から 11,664 MeV へ跳ね上がり、二次関数は遠方で発散するため外側転回点そのものが消失します（P → 0）。第4項 `−V00` は定数なので全空間を一様に下げ、局在した井戸になりません。§5 の「障壁幅の縮小によるトンネル確率の指数関数的増大」はこの項に依存するため、同じく成立しません。
+> 検証の詳細と数値は [`falsification_00potential.md`](falsification_00potential.md)、再現用スクリプトは [`../scripts/verify_00potential.py`](../scripts/verify_00potential.py)。以下の原文は削除せず、否定的結果の記録として残します。
+
+---
+
 # TTT-Fusion：理論コア定義
 ## Wave Interference, 00-Potential, and Fusion Tunnel Probability Enhancement
 ### *Theory Core Document — Tri-Tetra Theory Sub-Theory*
