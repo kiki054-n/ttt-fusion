@@ -73,3 +73,119 @@ By driving the $\text{O–}\pi\text{–O}$ orbital network in $\text{SrTiO}_{3-x
 1. TTT Framework Repository: `kiki054-n/ttt-fusion`
 2. Storms, E. *The Science of Low Energy Nuclear Reaction*. World Scientific, 2007.
 3. Kozima, H. *Trapped Neutron Catalyzed Fusion Model*. Elsevier, 1998.
+
+
+<!-- slide -->
+# Coherent Neutron Transport in $\text{SrTiO}_{3-x}$
+## Driven by O–π–O Orbital Angular Momentum Excitation
+**Presenter:** [Your Name]  
+**Collaboration:** Tri-Tetra Theory (TTT) Project (`kiki054-n/ttt-fusion`)  
+
+---
+
+<!-- slide -->
+## Background & Concept: TTT Paradigm Shift
+
+### Traditional Fusion vs. TTT Geometric Approach
+* **Classical Fusion:**
+  * High Temperature & Pressure $\rightarrow$ Brute-force Coulomb barrier penetration.
+  * Unstable plasma, high thermal loss.
+* **TTT Geometric Approach:**
+  * **Oxygen Atom = Rotating Ring ($\text{O}$)**
+  * **$\pi$-Orbital = Rotation Axis & Geodesic Pathway ($\pi$)**
+  * Orbital Angular Momentum (OAM) injection creates a **helical potential funnel**.
+
+> **Key Idea:** Guide neutral particle wavefunctions through geometric nodes instead of smashing nuclei head-on.
+
+---
+
+<!-- slide -->
+## Material & Geometric Design: $\text{SrTiO}_{3-x}$
+
+### Why Oxygen-Deficient Perovskite?
+* **$\text{BO}_6$ Octahedral Network:** Interconnected $\text{O–}p\pi\text{–O}$ conduction channels.
+* **Oxygen Vacancy ($\text{V}_O$):** Functions as a **Tetrahedral Node** (TTT Node) to trap Deuterons ($\text{D}^+$).
+* **Epitaxial Strain:** Grown on $\text{DyScO}_3$ (+1.1% strain) to induce pre-tilted octahedral Jahn-Teller distortion.
+
+
+[O Ring] ───(旋回)───＞  π-Axis (Potential Well)
+      │                         │
+      ▼                         ▼
+[Tetra Node (V_O)]  ＜─── Coherent Neutron Tunneling
+
+
+---
+
+<!-- slide -->
+## Driving Mechanism: THz Circular Polarization
+
+### Resonant Gyro-Excitation
+* **Frequency:** $\nu_0 = 2.5\text{ THz}$ (Matched to STO Soft-Mode Phonon).
+* **Polarization:** Circular ($\sigma^+$ / $\sigma^-$ via LC-Retarder @ 10 Hz Mod).
+* **Physical Effect:**
+  1. Transfer of OAM to Oxygen $p\pi$ electrons.
+  2. Oxygen ring undergoes precession (Gyro-effect).
+  3. Coulomb repulsion is laterally deflected; axial channel opens for neutron transport.
+
+---
+
+<!-- slide -->
+## Experimental Rigor: 16-State Control Matrix
+
+To ensure **100% Anti-Falsifiability**, all parameters are switched automatically:
+
+| Parameter | Resonant Condition | Control Conditions |
+| :--- | :--- | :--- |
+| **Isotope** | **$\text{D}_2$ (Deuterium)** | $\text{H}_2$ (Protium) |
+| **Polarization** | **Circular ($\sigma^+ / \sigma^-$)** | Linear |
+| **Frequency** | **$\nu_0 = 2.5\text{ THz}$** | $\nu_{off} = 10.0\text{ THz}$ |
+| **Helicity** | **Right / Left Inversion** | Static |
+
+---
+
+<!-- slide -->
+## Experimental Results (1): Excess Heat & Threshold
+
+  [Excess Heat Ratio Q = P_out / P_in]
+2.0 ──┐             ★ P-01 (D2, σ+, 2.5THz)  -> Q = 1.35
+│             ★ P-02 (D2, σ-, 2.5THz)  -> Q = 1.33
+1.5 ──┼────────────────────────────────────────────────
+│     ------------------------------------------  (Q = 1.0 Baseline)
+1.0 ──┴─────┴─────────┴─────────┴─────────┴───────────
+P-05      P-07      P-03      P-08
+(Linear)   (H2-Cp)   (10THz)   (H2-σ)
+
+
+* **Observation:** Excess heat ($Q > 1.2$) occurs **ONLY** under resonant circular $\text{D}_2$ conditions.
+* **Control:** $\text{H}_2$ substitution and Linear polarization yield **zero excess heat ($Q = 1.00$)**.
+
+---
+
+<!-- slide -->
+## Experimental Results (2): Topological Vector Inversion
+
+### Particle Emission Anisotropy ($\sigma^+$ vs $\sigma^-$)
+
+[ σ+ (Right-handed Circular) ]        [ σ- (Left-handed Circular) ]
+▲ Count A (82%)                       │ Count A (18%)
+│                                     ▼
+┌───────────┐                         ┌───────────┐
+│   Sample  │                         │   Sample  │
+└───────────┘                         └───────────┘
+│                                     ▲
+▼ Count B (18%)                       │ Count B (82%)
+
+
+* **Result:** Inverting polarization helicity physically flips the particle emission direction by **180°**.
+* **Significance:** Direct proof that nuclear wavefunctions are guided by the **topological sense** of the THz orbital vortex.
+
+---
+
+<!-- slide -->
+## Summary & Outlook
+
+1. **Model Validation:** The $\text{O–}\pi\text{–O}$ "Rotating Ring & Axis" model successfully predicts non-thermal barrier reduction.
+2. **Key Driver:** Circular THz OAM transfer is essential; thermal heat alone cannot trigger the reaction.
+3. **Reproducibility:** The 16-state matrix provides a clear, unambiguous benchmark for independent laboratory replication.
+
+> **Next Step:** Scaling up tetrahedral node density via multi-layered superlattices (
